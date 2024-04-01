@@ -1,4 +1,4 @@
-package com.example.Securityprueba.controller;
+package com.example.Securityprueba.controllers;
 
 import com.example.Securityprueba.entities.*;
 import com.example.Securityprueba.service.AuthenticationService;
@@ -61,6 +61,11 @@ public class AuthenticationController {
         return ResponseEntity.ok(response);
     }
 
+    @PostMapping(value = "/login/jury")
 
+    public ResponseEntity<?> loginJury(@RequestBody Jury request) throws AuthenticationException {
+        AuthenticationResponse response = authenticationService.authenticate(request);
+        return ResponseEntity.ok(response);
+    }
 }
 

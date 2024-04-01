@@ -1,4 +1,4 @@
-package com.example.Securityprueba.controller;
+package com.example.Securityprueba.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

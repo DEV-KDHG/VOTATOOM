@@ -37,7 +37,7 @@ private final UserDetailsServiceImp userDetailsServiceImp;
                 .authorizeHttpRequests(req -> req
                         .requestMatchers(String.valueOf(PathRequest.toStaticResources().atCommonLocations())).permitAll()
                         .requestMatchers("/register/**",  "/login/**", "/register/jury").permitAll()
-                        .requestMatchers("/hello").hasAuthority("STUDENT")
+                        .requestMatchers("/votes").hasAuthority("STUDENT")
                         .requestMatchers("/admin/hello").hasAuthority("ADMIN")
                         .requestMatchers("/jury/hello").hasAuthority("JURY")
                         .anyRequest().authenticated())
