@@ -1,10 +1,7 @@
 package com.example.Securityprueba.service;
 
 import com.example.Securityprueba.entities.*;
-import com.example.Securityprueba.repository.AdministratorRepository;
-import com.example.Securityprueba.repository.JuryRepository;
-import com.example.Securityprueba.repository.StudentsRepository;
-import com.example.Securityprueba.repository.UserRepository;
+import com.example.Securityprueba.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,6 +17,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final UserRepository userRepository;
+
     @Autowired
     private JuryRepository juryRepository;
 
@@ -27,32 +25,30 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
 
-    public AuthenticationService(StudentsRepository studentRepository, AdministratorRepository adminRepository, PasswordEncoder passwordEncoder, JwtService jwtService, @Qualifier("studentsRepository") UserRepository userRepository, AuthenticationManager authenticationManager) {
+    public AuthenticationService(StudentsRepository studentRepository, AdministratorRepository adminRepository, PasswordEncoder passwordEncoder, JwtService jwtService, @Qualifier("studentsRepository") UserRepository userRepository,  AuthenticationManager authenticationManager) {
         this.studentRepository = studentRepository;
         this.adminRepository = adminRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
         this.userRepository = userRepository;
+
         this.authenticationManager = authenticationManager;
     }
     public AuthenticationResponse register(Students studentRequest) {
         Students student = new Students();
 
-        // Setear los valores del estudiante
         student.setUsername(studentRequest.getUsername());
         student.setName(studentRequest.getName());
         student.setRole(Role.STUDENT);
         student.setLastName(studentRequest.getLastName());
         student.setPassword(passwordEncoder.encode(studentRequest.getPassword()));
 
-        // Setear el grado e identificación del estudiante
         student.setGrade(studentRequest.getGrade());
         student.setIdentification(studentRequest.getIdentification());
 
-        // Guardar el estudiante en el repositorio de estudiantes
         Students savedStudent = studentRepository.save(student);
 
-        // Generar un token JWT para el estudiante registrado
+
         String token = jwtService.generateToken(savedStudent);
 
         return new AuthenticationResponse(token);

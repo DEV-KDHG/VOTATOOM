@@ -23,6 +23,7 @@ public class UserDetailsServiceImp implements UserDetailsService {
     private AdministratorRepository administratorRepository;
 @Autowired
 private JuryRepository juryRepository;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Users> studentOptional = studentsRepository.findByUsername(username);
@@ -39,9 +40,6 @@ private JuryRepository juryRepository;
             return JuryOptional.get();
         }
 
-
-
-        // Si no se encuentra en ninguna tabla, lanza una excepción
         throw new UsernameNotFoundException("Usuario no encontrado");
     }
 }
