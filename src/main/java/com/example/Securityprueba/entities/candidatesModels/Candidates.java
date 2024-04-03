@@ -1,7 +1,8 @@
-package com.example.Securityprueba.entities;
+package com.example.Securityprueba.entities.candidatesModels;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,20 +10,20 @@ import lombok.NoArgsConstructor;
 
 @MappedSuperclass
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Candidate {
+@AllArgsConstructor
+@Builder
+public class Candidates {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 private  Long id;
     private String name;
 
-    @Column(name = "last_name")
+
     private String lastName;
     private Long identification;
-    private Integer grado;
-    private String grupo;
-    private String foto;
+    private Integer grade;
+    private String photo;
 
 
 

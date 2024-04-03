@@ -1,4 +1,4 @@
-package com.example.Securityprueba.entities;
+package com.example.Securityprueba.entities.SecurityModels;
 
 public enum Role {
     ADMIN ,

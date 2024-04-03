@@ -1,15 +1,12 @@
 package com.example.Securityprueba.controllers.VotesController;
 
-import com.example.Securityprueba.Dto.VotesDto;
-import com.example.Securityprueba.entities.Students;
-import com.example.Securityprueba.entities.Users;
-import com.example.Securityprueba.entities.Votes;
-import com.example.Securityprueba.repository.StudentsRepository;
-import com.example.Securityprueba.repository.UserRepository;
+import com.example.Securityprueba.Dto.VotesDto.VotesDto;
+import com.example.Securityprueba.entities.UserModels.Users;
+import com.example.Securityprueba.entities.votesModels.Votes;
+import com.example.Securityprueba.repositories.UserRepositories.StudentsRepository;
 import com.example.Securityprueba.service.votesServices.VotesSeriviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,11 +27,7 @@ public class SaveVotesController {
     private StudentsRepository studentsRepository;
     @PostMapping("/votes")
     public ResponseEntity<?> save(@RequestBody VotesDto votesDto, Principal principal) throws URISyntaxException {
-        String username = principal.getName(); // Obtener el nombre de usuario del usuario autenticado
-
-        //if (studentOptional != null && studentOptional.get() != null)/
-
-        // Buscar el usuario por su nombre de usuario
+        String username = principal.getName();
         Optional<Users> userOptional = studentsRepository.findByUsername(username);
         Long idVotess= userOptional.get().getId();
 

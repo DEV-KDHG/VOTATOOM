@@ -1,4 +1,4 @@
-package com.example.Securityprueba.entities;
+package com.example.Securityprueba.entities.UserModels;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 @Data
 @Entity
+@DiscriminatorColumn(name = "user_type")
+
 @Inheritance(strategy = InheritanceType.JOINED)
 public  abstract class Users implements UserDetails {
 @Id

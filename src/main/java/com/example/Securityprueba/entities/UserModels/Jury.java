@@ -1,5 +1,6 @@
-package com.example.Securityprueba.entities;
+package com.example.Securityprueba.entities.UserModels;
 
+import com.example.Securityprueba.entities.SecurityModels.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -9,7 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Collection;
 import java.util.List;
 @Entity
-public class Jury extends Users{
+public class Jury extends Users {
     private  String GradeASigne;
     @Enumerated( value = EnumType.STRING)
     private Role role;

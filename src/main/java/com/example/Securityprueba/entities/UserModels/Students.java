@@ -1,9 +1,8 @@
-package com.example.Securityprueba.entities;
+package com.example.Securityprueba.entities.UserModels;
 
+import com.example.Securityprueba.entities.SecurityModels.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -14,11 +13,12 @@ import java.util.List;
     @Data
     @Entity
 
-    @Table
+
     public class Students extends Users {
         private String grade;
 
         private String identification;
+        private Long code;
 
         @Enumerated(value = EnumType.STRING)
         private Role role;

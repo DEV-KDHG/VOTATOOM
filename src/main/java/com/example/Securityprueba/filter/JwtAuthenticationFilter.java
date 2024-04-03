@@ -1,8 +1,8 @@
 package com.example.Securityprueba.filter;
 
 
-import com.example.Securityprueba.service.JwtService;
-import com.example.Securityprueba.service.UserDetailsServiceImp;
+import com.example.Securityprueba.service.userServices.JwtService;
+import com.example.Securityprueba.service.userServices.UserDetailsServiceImp;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

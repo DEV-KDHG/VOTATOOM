@@ -1,4 +1,4 @@
-package com.example.Securityprueba.entities;
+package com.example.Securityprueba.entities.votesModels;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
+
 public class Votes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +19,9 @@ public class Votes {
     @Column(name = "state_votation")
  private  String stateVotation;
 
-
-
 @Column(unique = true)
     private  Long studentsId;
+
+
+
 }

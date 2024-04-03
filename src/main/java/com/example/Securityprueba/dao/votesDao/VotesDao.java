@@ -1,6 +1,6 @@
 package com.example.Securityprueba.dao.votesDao;
 
-import com.example.Securityprueba.entities.Votes;
+import com.example.Securityprueba.entities.votesModels.Votes;
 
 import java.util.Optional;
 

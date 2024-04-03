@@ -1,6 +1,6 @@
-package com.example.Securityprueba.service;
+package com.example.Securityprueba.service.userServices;
 
-import com.example.Securityprueba.entities.Users;
+import com.example.Securityprueba.entities.UserModels.Users;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;

@@ -1,7 +1,6 @@
-package com.example.Securityprueba.Dto;
+package com.example.Securityprueba.Dto.VotesDto;
 
-import com.example.Securityprueba.entities.Students;
-import jakarta.persistence.*;
+import com.example.Securityprueba.entities.UserModels.Students;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

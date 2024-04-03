@@ -1,7 +1,10 @@
-package com.example.Securityprueba.controllers;
+package com.example.Securityprueba.controllers.AuntheticationControllers;
 
-import com.example.Securityprueba.entities.*;
-import com.example.Securityprueba.service.AuthenticationService;
+import com.example.Securityprueba.entities.SecurityModels.AuthenticationResponse;
+import com.example.Securityprueba.entities.UserModels.Administrators;
+import com.example.Securityprueba.entities.UserModels.Jury;
+import com.example.Securityprueba.entities.UserModels.Students;
+import com.example.Securityprueba.service.userServices.AuthenticationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +39,7 @@ public class AuthenticationController {
 
 
     @PostMapping("/register/admin")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody administrator request) {
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody Administrators request) {
         AuthenticationResponse response = authenticationService.registerAdmin(request);
         return ResponseEntity.ok(response);
 
@@ -56,7 +59,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login/admin")
-    public ResponseEntity<?> loginAdmin(@RequestBody administrator request) throws AuthenticationException {
+    public ResponseEntity<?> loginAdmin(@RequestBody Administrators request) throws AuthenticationException {
         AuthenticationResponse response = authenticationService.authenticate(request);
         return ResponseEntity.ok(response);
     }

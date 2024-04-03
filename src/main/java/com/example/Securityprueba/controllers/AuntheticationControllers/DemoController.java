@@ -1,4 +1,4 @@
-package com.example.Securityprueba.controllers;
+package com.example.Securityprueba.controllers.AuntheticationControllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

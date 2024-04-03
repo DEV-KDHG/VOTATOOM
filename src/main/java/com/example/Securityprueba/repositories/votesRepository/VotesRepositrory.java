@@ -1,6 +1,6 @@
-package com.example.Securityprueba.repository.votesRepository;
+package com.example.Securityprueba.repositories.votesRepository;
 
-import com.example.Securityprueba.entities.Votes;
+import com.example.Securityprueba.entities.votesModels.Votes;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

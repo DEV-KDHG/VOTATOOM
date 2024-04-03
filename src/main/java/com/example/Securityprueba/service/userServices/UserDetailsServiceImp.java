@@ -1,10 +1,10 @@
-package com.example.Securityprueba.service;
+package com.example.Securityprueba.service.userServices;
 
 
-import com.example.Securityprueba.entities.Users;
-import com.example.Securityprueba.repository.AdministratorRepository;
-import com.example.Securityprueba.repository.JuryRepository;
-import com.example.Securityprueba.repository.StudentsRepository;
+import com.example.Securityprueba.entities.UserModels.Users;
+import com.example.Securityprueba.repositories.UserRepositories.AdministratorRepository;
+import com.example.Securityprueba.repositories.UserRepositories.JuryRepository;
+import com.example.Securityprueba.repositories.UserRepositories.StudentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

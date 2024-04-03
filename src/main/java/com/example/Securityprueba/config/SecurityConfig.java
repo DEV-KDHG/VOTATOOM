@@ -2,7 +2,7 @@ package com.example.Securityprueba.config;
 
 
 import com.example.Securityprueba.filter.JwtAuthenticationFilter;
-import com.example.Securityprueba.service.UserDetailsServiceImp;
+import com.example.Securityprueba.service.userServices.UserDetailsServiceImp;
 import org.springframework.boot.autoconfigure.security.reactive.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,7 +38,7 @@ private final UserDetailsServiceImp userDetailsServiceImp;
                         .requestMatchers(String.valueOf(PathRequest.toStaticResources().atCommonLocations())).permitAll()
                         .requestMatchers("/register/**",  "/login/**", "/register/jury").permitAll()
                         .requestMatchers("/votes").hasAuthority("STUDENT")
-                        .requestMatchers("/admin/hello").hasAuthority("ADMIN")
+                        .requestMatchers( "save/comptroller").hasAuthority("ADMIN")
                         .requestMatchers("/jury/hello").hasAuthority("JURY")
                         .anyRequest().authenticated())
                 .userDetailsService(userDetailsServiceImp)

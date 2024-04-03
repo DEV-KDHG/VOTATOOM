@@ -1,7 +1,15 @@
-package com.example.Securityprueba.service;
+package com.example.Securityprueba.service.userServices;
 
-import com.example.Securityprueba.entities.*;
-import com.example.Securityprueba.repository.*;
+import com.example.Securityprueba.entities.SecurityModels.AuthenticationResponse;
+import com.example.Securityprueba.entities.SecurityModels.Role;
+import com.example.Securityprueba.entities.UserModels.Administrators;
+import com.example.Securityprueba.entities.UserModels.Jury;
+import com.example.Securityprueba.entities.UserModels.Students;
+import com.example.Securityprueba.entities.UserModels.Users;
+import com.example.Securityprueba.repositories.UserRepositories.AdministratorRepository;
+import com.example.Securityprueba.repositories.UserRepositories.JuryRepository;
+import com.example.Securityprueba.repositories.UserRepositories.StudentsRepository;
+import com.example.Securityprueba.repositories.UserRepositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -45,7 +53,7 @@ public class AuthenticationService {
 
         student.setGrade(studentRequest.getGrade());
         student.setIdentification(studentRequest.getIdentification());
-
+student.setCode(studentRequest.getCode());
         Students savedStudent = studentRepository.save(student);
 
 
@@ -56,8 +64,8 @@ public class AuthenticationService {
 
 
 
-    public AuthenticationResponse registerAdmin(administrator request) {
-        administrator administrador = new administrator();
+    public AuthenticationResponse registerAdmin(Administrators request) {
+        Administrators administrador = new Administrators();
 
         administrador.setUsername(request.getUsername());
         administrador.setName(request.getName());
@@ -66,7 +74,7 @@ public class AuthenticationService {
 administrador.setNameIns(administrador.getNameIns());
         administrador.setPassword(passwordEncoder.encode(request.getPassword()));
 
-        administrator savedAdmin = adminRepository.save(administrador);
+        Administrators savedAdmin = adminRepository.save(administrador);
         String token = jwtService.generateToken(savedAdmin);
 
         return new AuthenticationResponse(token);
@@ -100,9 +108,11 @@ jury.setGradeASigne(request.getGradeASigne());
 
         Users user = userRepository.findByUsername(request.getUsername()).orElseThrow();
         if (user instanceof Students) {
+            Students students =  new Students();
+            students.getCode();
             String token = jwtService.generateToken(user);
             return new AuthenticationResponse("Estudiante autenticado: " + token);
-        } else if (user instanceof administrator) {
+        } else if (user instanceof Administrators) {
             String token = jwtService.generateToken(user);
             return new AuthenticationResponse("Administrador autenticado: " + token);
 

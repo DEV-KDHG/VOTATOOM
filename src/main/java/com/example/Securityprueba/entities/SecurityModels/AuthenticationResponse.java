@@ -1,4 +1,4 @@
-package com.example.Securityprueba.entities;
+package com.example.Securityprueba.entities.SecurityModels;
 
 public class AuthenticationResponse {
     private String token;

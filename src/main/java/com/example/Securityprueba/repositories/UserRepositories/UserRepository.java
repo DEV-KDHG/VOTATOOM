@@ -1,6 +1,6 @@
-package com.example.Securityprueba.repository;
+package com.example.Securityprueba.repositories.UserRepositories;
 
-import com.example.Securityprueba.entities.Users;
+import com.example.Securityprueba.entities.UserModels.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
