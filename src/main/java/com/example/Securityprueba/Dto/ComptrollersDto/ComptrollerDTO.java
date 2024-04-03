@@ -1,6 +1,5 @@
-package com.example.Securityprueba.Dto.ComptrollersDTO;
+package com.example.Securityprueba.Dto.ComptrollersDto;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

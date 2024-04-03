@@ -1,6 +1,6 @@
 package com.example.Securityprueba.controllers.ComptrollerControllers;
 
-import com.example.Securityprueba.Dto.ComptrollersDTO.ComptrollerDTO;
+import com.example.Securityprueba.Dto.ComptrollersDto.ComptrollerDTO;
 import com.example.Securityprueba.entities.candidatesModels.Comptroller;
 import com.example.Securityprueba.service.comptrollerServices.ComptrollerServicesIMP;
 import org.springframework.beans.factory.annotation.Autowired;

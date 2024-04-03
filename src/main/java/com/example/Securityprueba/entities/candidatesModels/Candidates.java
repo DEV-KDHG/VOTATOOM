@@ -1,18 +1,14 @@
 package com.example.Securityprueba.entities.candidatesModels;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 
 
 @MappedSuperclass
 @Data
-@NoArgsConstructor
+@NoArgsConstructor(force = true, access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Builder
+
 public class Candidates {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +20,8 @@ private  Long id;
     private Long identification;
     private Integer grade;
     private String photo;
-
-
+    @Column(name = "`group`")
+    private String group;
 
 
 }
