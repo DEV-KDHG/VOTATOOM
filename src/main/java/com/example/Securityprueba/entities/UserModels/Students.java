@@ -17,7 +17,7 @@ import java.util.List;
     public class Students extends Users {
         private String grade;
 
-        private String identification;
+        private Long identification;
         private Long code;
 
         @Enumerated(value = EnumType.STRING)

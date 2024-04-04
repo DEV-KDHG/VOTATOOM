@@ -20,21 +20,13 @@ public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
-    @Autowired
+
     public AuthenticationController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
 
 
 
-    @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody Students request) {
-
-        request.setGrade(request.getGrade());
-        // Suponiendo que el método register de authenticationService devuelve directamente la respuesta de autenticación
-        AuthenticationResponse response = authenticationService.register( request);
-        return ResponseEntity.ok(response);
-    }
 
 
 

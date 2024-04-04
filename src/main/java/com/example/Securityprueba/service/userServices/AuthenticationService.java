@@ -62,7 +62,9 @@ student.setCode(studentRequest.getCode());
         return new AuthenticationResponse(token);
     }
 
-
+    public void deleteStudentById(Long studentId) {
+        studentRepository.deleteById(studentId);
+    }
 
     public AuthenticationResponse registerAdmin(Administrators request) {
         Administrators administrador = new Administrators();
