@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/students")
+@RequestMapping(value = "/api/v1/students1")
 public class StudentsFindByName {
     private final StudentsRepository studentRepository;
 

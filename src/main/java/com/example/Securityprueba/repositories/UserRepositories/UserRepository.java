@@ -19,4 +19,5 @@ Optional<Users> findById(Long id);
     List<Users> findAllByName(String name);
 
    Optional<Students> findAllByIdentification(Long identification);
+  List<Students> findAllByGrade(String grade);
 }

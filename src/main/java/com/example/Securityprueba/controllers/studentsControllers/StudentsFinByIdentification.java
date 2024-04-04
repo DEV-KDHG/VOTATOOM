@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 @RestController
-@RequestMapping(value = "/api/v1/students")
+@RequestMapping(value = "/api/v1/students1")
 public class StudentsFinByIdentification {
     private final StudentsRepository studentRepository;
 

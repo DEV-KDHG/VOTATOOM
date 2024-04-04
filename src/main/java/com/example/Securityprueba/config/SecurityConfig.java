@@ -36,9 +36,9 @@ private final UserDetailsServiceImp userDetailsServiceImp;
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
                         .requestMatchers(String.valueOf(PathRequest.toStaticResources().atCommonLocations())).permitAll()
-                        .requestMatchers("/api/v1/students/**",  "/login/**", "/register/jury").permitAll()
+                        .requestMatchers( "/api/v1/students/login/students", "/login/**", "/register/jury").permitAll()
                         .requestMatchers("/votes").hasAuthority("STUDENT")
-                        .requestMatchers( "save/comptroller","findByName/{name}", "list/comptroller", "findBy/{id}").hasAuthority("ADMIN")
+                        .requestMatchers( "save/comptroller","findByName/{name}", "list/comptroller", "findBy/{id}", "/api/v1/students1/").hasAuthority("ADMIN")
                         .requestMatchers("/jury/hello").hasAuthority("JURY")
                         .anyRequest().authenticated())
                 .userDetailsService(userDetailsServiceImp)

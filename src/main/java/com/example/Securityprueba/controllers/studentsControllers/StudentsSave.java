@@ -16,7 +16,7 @@ public class StudentsSave {
 
     @Autowired
     private  AuthenticationService authenticationService;
-    @PostMapping("/register/students")
+    @PostMapping("/register/students1")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody Students request) {
 
 
