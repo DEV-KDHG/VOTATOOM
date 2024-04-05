@@ -38,7 +38,7 @@ private final UserDetailsServiceImp userDetailsServiceImp;
                         .requestMatchers(String.valueOf(PathRequest.toStaticResources().atCommonLocations())).permitAll()
                         .requestMatchers("/register/**",  "/login/**", "/register/jury").permitAll()
                         .requestMatchers("/votes").hasAuthority("STUDENT")
-                        .requestMatchers( "save/comptroller", "list/comptroller").hasAuthority("ADMIN")
+                        .requestMatchers( "save/comptroller", "list/comptroller","/api/v1/representative/**").hasAuthority("ADMIN")
                         .requestMatchers("/jury/hello").hasAuthority("JURY")
                         .anyRequest().authenticated())
                 .userDetailsService(userDetailsServiceImp)
