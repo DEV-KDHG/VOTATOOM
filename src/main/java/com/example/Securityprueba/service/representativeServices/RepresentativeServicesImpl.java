@@ -35,6 +35,12 @@ public class RepresentativeServicesImpl implements RepresentativeServices {
 
     @Transactional
     @Override
+    public Optional<Representative> findByIdentification(Long identificacion){
+        return representativeDao.findByIdentification(identificacion);
+    }
+
+    @Transactional
+    @Override
     public Optional<Representative> findByName(String name) {
         return representativeDao.findByName(name);
     }

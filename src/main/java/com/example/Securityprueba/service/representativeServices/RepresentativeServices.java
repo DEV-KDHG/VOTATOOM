@@ -10,6 +10,8 @@ public interface RepresentativeServices {
 
     void save (Representative representative);
 
+    Optional<Representative> findByIdentification(Long identification);
+
     List<Representative> findAll();
 
     Optional<Representative> findByGrade(Integer grade);

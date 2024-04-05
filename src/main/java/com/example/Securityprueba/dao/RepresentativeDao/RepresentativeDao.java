@@ -10,6 +10,8 @@ public interface RepresentativeDao {
 
     List<Representative> findAll();
 
+    Optional<Representative> findByIdentification(Long identification);
+
     Optional<Representative> findByGrade(Integer grade);
 
     Optional<Representative> findByName(String name);

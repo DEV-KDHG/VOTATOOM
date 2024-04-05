@@ -12,6 +12,8 @@ public interface RepresentativeRepository extends JpaRepository<Representative, 
     @Override
     Optional<Representative> findById(Long Long);
 
+    Optional<Representative> findByIdentification(Long identification);
+
     Optional<Representative> findByGrade(Integer grade);
 
     Optional<Representative> findByName(String name);

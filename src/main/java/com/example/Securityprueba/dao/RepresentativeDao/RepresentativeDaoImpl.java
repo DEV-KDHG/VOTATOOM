@@ -25,6 +25,11 @@ public class RepresentativeDaoImpl implements RepresentativeDao{
     }
 
     @Override
+    public Optional<Representative> findByIdentification(Long identification){
+        return representativeRepository.findByIdentification(identification);
+    }
+
+    @Override
     public Optional<Representative> findByGrade(Integer grade) {
         return representativeRepository.findByGrade(grade);
     }
