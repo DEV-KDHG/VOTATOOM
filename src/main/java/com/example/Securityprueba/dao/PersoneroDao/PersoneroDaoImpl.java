@@ -24,9 +24,26 @@ public class PersoneroDaoImpl implements  PersoneroDao{
     }
 
     @Override
-    public Optional<Personero> findByName(String name) {
+    public List<Personero> findByName(String name) {
         return personeroRepository.findByName(name);
     }
+
+
+    @Override
+    public Optional<Personero> findById(Long id) {
+        return personeroRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Personero> findByIdentification(Long identification) {
+        return personeroRepository.findByIdentification(identification);
+    }
+
+    @Override
+    public List<Personero> findAllByGrade(int grade) {
+        return personeroRepository.findAllByGrade(grade);
+    }
+
 
     @Override
     public List<Personero> findAll() {

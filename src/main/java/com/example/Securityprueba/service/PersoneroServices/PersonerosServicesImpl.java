@@ -19,21 +19,43 @@ public class PersonerosServicesImpl implements  PersonerosServices {
     public void save(Personero personero) {
 personeroDao.save(personero);
     }
-    @Transactional(readOnly = true)
+
     @Override
     public Optional<Personero> findByGrade(Integer grade) {
-        return personeroDao.findByGrade(grade) ;
+        return personeroDao.findByGrade(grade);
     }
-    @Transactional(readOnly = true)
+
     @Override
-    public Optional<Personero> findByName(String name) {
-        return  personeroDao.findByName(name);
+    public List<Personero> findByName(String name) {
+        return personeroDao.findByName(name);
     }
+
+    @Override
+    public List<Personero> findAllByGrade(int grade) {
+        return personeroDao.findAllByGrade(grade);
+    }
+
+
+
+
+    @Override
+    public Optional<Personero> findByIdentification(Long identification) {
+        return personeroDao.findByIdentification(
+                identification
+        );
+    }
+
     @Transactional(readOnly = true)
     @Override
     public List<Personero> findAll() {
         return personeroDao.findAll();
     }
+
+    @Override
+    public Optional<Personero> findById(Long id) {
+        return personeroDao.findById(id);
+    }
+
     @Transactional()
     @Override
     public void deleteById(long id) {

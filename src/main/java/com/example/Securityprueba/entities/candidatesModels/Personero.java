@@ -8,9 +8,8 @@ import lombok.*;
 @Entity
 @Table
 @Data
-@Builder
+
 
 public class Personero  extends  Candidates{
-
 
 }
