@@ -1,6 +1,7 @@
 package com.example.Securityprueba.service.userServices;
 
 
+import com.example.Securityprueba.entities.UserModels.Students;
 import com.example.Securityprueba.entities.UserModels.Users;
 import com.example.Securityprueba.repositories.UserRepositories.AdministratorRepository;
 import com.example.Securityprueba.repositories.UserRepositories.JuryRepository;

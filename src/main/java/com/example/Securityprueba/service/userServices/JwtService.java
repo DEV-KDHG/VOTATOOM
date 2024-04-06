@@ -46,17 +46,16 @@ public class JwtService {
 
 
 
-    public String generateToken(Users user){
+    public String generateToken(Users user) {
         String token = Jwts.builder()
-
                 .subject(user.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 24*60*60*100))
+                .expiration(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000))
                 .signWith(getSigninKey())
                 .compact();
         return token;
-
     }
+
 
 
     private SecretKey getSigninKey(){

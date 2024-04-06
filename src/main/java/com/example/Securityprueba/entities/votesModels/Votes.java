@@ -1,5 +1,7 @@
 package com.example.Securityprueba.entities.votesModels;
 
+import com.example.Securityprueba.entities.candidatesModels.Comptroller;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +24,9 @@ public class Votes {
 @Column(unique = true)
     private  Long studentsId;
 
-
+    @ManyToOne(targetEntity = Comptroller.class)
+    @JoinColumn(name = "id_comptroller", nullable = false)
+    @JsonIgnore
+    private Comptroller comptroller;
 
 }

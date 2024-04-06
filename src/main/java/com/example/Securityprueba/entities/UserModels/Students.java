@@ -16,7 +16,8 @@ import java.util.List;
 
     public class Students extends Users {
         private String grade;
-
+        @Column(name = "`group`")
+        private String group;
         private Long identification;
         private Long code;
 
