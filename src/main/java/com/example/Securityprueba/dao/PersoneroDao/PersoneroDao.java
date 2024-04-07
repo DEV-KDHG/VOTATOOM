@@ -7,8 +7,13 @@ import java.util.Optional;
 
 public interface PersoneroDao {
 void save (Personero  personero);
+
     Optional<Personero> findByGrade(Integer grade);
-    Optional<Personero>findByName(String name);
+    List<Personero> findByName(String name);
+    Optional<Personero>findById(Long id);
+
+    Optional<Personero>findByIdentification(Long identification);
+    List<Personero>findAllByGrade(int grade);
 
     List<Personero>findAll();
 
