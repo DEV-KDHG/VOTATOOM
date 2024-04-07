@@ -1,12 +1,8 @@
 package com.example.Securityprueba.entities.candidatesModels;
 
 import com.example.Securityprueba.entities.candidatesModels.Candidates;
-import com.example.Securityprueba.entities.votesModels.Votes;
-import com.example.Securityprueba.service.votesServices.VotesSeriviceImpl;
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.util.List;
 
 @Entity
 @Data
@@ -14,15 +10,8 @@ import java.util.List;
 public class Comptroller extends Candidates {
 
 private String estado;
-private Long studentsId;
-
-    @OneToMany(targetEntity = Votes.class, cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY , mappedBy = "comptroller" ,orphanRemoval = true)
-
-    private List<Votes> votes;
-
     public Comptroller() {
-
+        // Puedes llamar al constructor de la superclase si es necesario
         super();
     }
 

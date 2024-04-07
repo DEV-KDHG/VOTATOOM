@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/api/v1/students1")
+@RequestMapping(value = "/api/v1/students")
 public class StudentsSave {
 
     @Autowired
     private  AuthenticationService authenticationService;
-    @PostMapping("/register/students")
+    @PostMapping("/register/students1")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody Students request) {
 
 

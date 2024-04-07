@@ -50,7 +50,7 @@ public class AuthenticationService {
         student.setRole(Role.STUDENT);
         student.setLastName(studentRequest.getLastName());
         student.setPassword(passwordEncoder.encode(studentRequest.getPassword()));
-student.setGroup(studentRequest.getGroup());
+
         student.setGrade(studentRequest.getGrade());
         student.setIdentification(studentRequest.getIdentification());
 student.setCode(studentRequest.getCode());
