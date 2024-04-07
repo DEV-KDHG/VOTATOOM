@@ -26,7 +26,7 @@ public class StudentsFindByGrade {
 
 
     @GetMapping("/students/findByGrade/{grade}")
-    public ResponseEntity<?> findByGrade(@PathVariable String grade) {
+    public ResponseEntity<?> findByGrade(@PathVariable Integer grade) {
         List<Students> students = studentRepository.findAllByGrade(grade); // Get students by grade
 
         if (students.isEmpty()) {
@@ -44,7 +44,7 @@ public class StudentsFindByGrade {
             StudentsDto studentDto = new StudentsDto();
             studentDto.setName(student.getName());
             studentDto.setLastName(student.getLastName());
-            studentDto.setGrade(student.getGrade());
+            studentDto.setGrade(String.valueOf(student.getGrade()));
             studentDto.setIdentification(student.getIdentification());
             // Add more assignments as needed
             studentDtos.add(studentDto);

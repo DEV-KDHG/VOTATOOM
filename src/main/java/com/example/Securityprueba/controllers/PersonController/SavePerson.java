@@ -40,7 +40,7 @@ public class SavePerson {
         Students students = optionalStudents.get();
 
         // Verificar si el grado del estudiante es mayor a 3 para crear el Personero
-        if (Integer.parseInt(students.getGrade()) > 3) {
+        if (students.getGrade() > 3) {
 
             // Verificar si ya existe un Personero asociado a esta identificación
             Optional<Personero> existingPersonero = personerosServices.findByIdentification(personeroDTO.getIdentification());
@@ -55,8 +55,8 @@ public class SavePerson {
             personero.setName(students.getName());
             personero.setLastName(students.getLastName());
             personero.setIdentification(personeroDTO.getIdentification());
-            personero.setGrade(Integer.parseInt(students.getGrade()));
-            personero.setGroup(personeroDTO.getGroup());
+            personero.setGrade(students.getGrade());
+            personero.setGroup(students.getGroup());
             personero.setPhoto(personeroDTO.getPhoto());
 
             // Guardar el nuevo Personero en la base de datos

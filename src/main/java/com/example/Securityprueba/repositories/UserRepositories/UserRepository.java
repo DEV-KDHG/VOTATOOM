@@ -21,5 +21,5 @@ Optional<Users> findById(Long id);
     Optional<Students>findByIdentification(Long identification);
 
    Optional<Students> findAllByIdentification(Long identification);
-  List<Students> findAllByGrade(String grade);
+  List<Students> findAllByGrade(Integer grade);
 }

@@ -43,7 +43,7 @@ public class StudentsFindByName {
                 StudentsDto studentDTO = new StudentsDto();
                 studentDTO.setName(student.getName());
                 studentDTO.setLastName(student.getLastName());
-                studentDTO.setGrade(student.getGrade());
+                studentDTO.setGrade(String.valueOf(student.getGrade()));
                 studentDTO.setIdentification(student.getIdentification());
                 // Añade más asignaciones según sea necesario
                 studentDTOs.add(studentDTO);

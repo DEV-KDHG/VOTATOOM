@@ -9,16 +9,21 @@ import java.util.Optional;
 @Repository
 public interface ComptrollerRepository extends JpaRepository <Comptroller, Long> {
 
+    Optional<Comptroller> findBystudentsId(Long studentsId);
     Optional<Comptroller> findByGrade(Integer grade);
     Optional<Comptroller> findByName(String name );
+    Optional<Comptroller> findByIdentification(Long identification);
 
     Optional<Comptroller> findById(Long id);
 
 
-   List<Comptroller> findAll();
+    List<Comptroller> findAll();
 
     void deleteById(Long id);
 
     void delete(Comptroller comptroller);
+
+
+
 
 }

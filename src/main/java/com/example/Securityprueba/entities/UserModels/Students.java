@@ -15,11 +15,12 @@ import java.util.List;
 
 
     public class Students extends Users {
-        private String grade;
+        private Integer grade;
 
         private Long identification;
         private Long code;
-
+        @Column(name = "`group`")
+        private String group;
         @Enumerated(value = EnumType.STRING)
         private Role role;
 

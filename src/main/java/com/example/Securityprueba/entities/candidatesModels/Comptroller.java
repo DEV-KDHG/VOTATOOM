@@ -10,6 +10,8 @@ import lombok.Data;
 public class Comptroller extends Candidates {
 
 private String estado;
+    private Long studentsId;
+
     public Comptroller() {
         // Puedes llamar al constructor de la superclase si es necesario
         super();
