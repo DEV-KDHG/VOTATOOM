@@ -45,19 +45,21 @@ public class JwtService {
     }
 
 
-
-    public String generateToken(Users user){
-        String token = Jwts.builder()
-
-                .subject(user.getUsername())
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 24*60*60*100))
-                .signWith(getSigninKey())
-                .compact();
-        return token;
-
+    public Long extractUserId(String token) {
+        Claims claims = extractAllClaims(token);
+        return claims.get("Identification", Long.class); // Suponiendo que "userId" es el nombre del claim que contiene el ID del usuario
     }
 
+    public String generateToken(Users user){
+        Long userId = user.getId(); // Suponiendo que tienes un método para obtener el ID del usuario
+        return Jwts.builder()
+                .claim("identification", userId) // Agregar la identificación del usuario como una claim al token
+                .setSubject(user.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 24*60*60*1000)) // Cambiado 24*60*60*100 a 24*60*60*1000 para que sea en milisegundos
+                .signWith(getSigninKey())
+                .compact();
+    }
 
     private SecretKey getSigninKey(){
         byte[] keyBytes= Decoders.BASE64URL.decode(SECRET_KEY);

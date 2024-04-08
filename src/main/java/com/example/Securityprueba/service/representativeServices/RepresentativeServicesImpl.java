@@ -41,7 +41,7 @@ public class RepresentativeServicesImpl implements RepresentativeServices {
 
     @Transactional
     @Override
-    public Optional<Representative> findByName(String name) {
+    public List<Representative> findByName(String name) {
         return representativeDao.findByName(name);
     }
 

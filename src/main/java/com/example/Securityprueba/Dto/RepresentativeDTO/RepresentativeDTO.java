@@ -17,4 +17,6 @@ public class RepresentativeDTO {
     private Integer grade;
     private String estado;
     private String photo;
+    private String group;
+
 }

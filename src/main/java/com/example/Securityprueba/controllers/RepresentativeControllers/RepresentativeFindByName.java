@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -19,13 +20,13 @@ public class RepresentativeFindByName {
     @Autowired
     private RepresentativeServices representativeServices;
 
-    @GetMapping("/findByName/{name}")
+/*    @GetMapping("/findByName/{name}")
     public ResponseEntity<?> findByName(@PathVariable String name) {
-        Optional<Representative> representativeOptional = representativeServices.findByName(name);
+        List<Representative> representativeOptional = representativeServices.findByName(name);
         if (representativeOptional.isPresent()) {
             return ResponseEntity.ok(representativeOptional.get());
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No representative found with name: " + name);
-        }
-    }
+        }*/
+
 }

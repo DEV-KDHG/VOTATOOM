@@ -22,7 +22,7 @@ public  abstract class Users implements UserDetails {
     private String password;
 
     private String name;
-
+    private Long identification;
     @Column(name = "last_name")
     private String lastName;
 

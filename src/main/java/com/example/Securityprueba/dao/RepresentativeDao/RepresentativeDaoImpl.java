@@ -35,8 +35,8 @@ public class RepresentativeDaoImpl implements RepresentativeDao{
     }
 
     @Override
-    public Optional<Representative> findByName(String name) {
-        return representativeRepository.findByName(name);
+    public List<Representative> findByName(String name) {
+        return representativeRepository.findAllByName(name);
     }
 
     @Override

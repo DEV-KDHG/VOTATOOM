@@ -14,7 +14,7 @@ public interface RepresentativeDao {
 
     Optional<Representative> findByGrade(Integer grade);
 
-    Optional<Representative> findByName(String name);
+    List<Representative> findByName(String name);
 
     void deleteById(Long id);
 }

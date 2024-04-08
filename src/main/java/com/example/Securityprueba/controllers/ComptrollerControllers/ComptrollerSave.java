@@ -36,7 +36,7 @@ public class ComptrollerSave {
 
 
 
-        Optional<Students> existingStudent = studentsRepository.findAllByIdentification(comptrollerDTO.getIdentification());
+        Optional<Students> existingStudent = studentsRepository.findStudentByIdentification(comptrollerDTO.getIdentification());
 
 
 

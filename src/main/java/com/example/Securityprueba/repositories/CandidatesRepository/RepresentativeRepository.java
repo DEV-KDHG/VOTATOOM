@@ -1,20 +1,26 @@
 package com.example.Securityprueba.repositories.CandidatesRepository;
 
 import com.example.Securityprueba.entities.candidatesModels.Representative;
+import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface RepresentativeRepository extends JpaRepository<Representative, Long> {
 
     @Override
-    Optional<Representative> findById(Long Long);
+    Optional<Representative> findById(Long id);
 
     Optional<Representative> findByIdentification(Long identification);
 
     Optional<Representative> findByGrade(Integer grade);
 
-    Optional<Representative> findByName(String name);
+    List<Representative> findAllByName(String name);
+
+    List<Representative> findAllByGrade(Integer grade);
+
+
 }

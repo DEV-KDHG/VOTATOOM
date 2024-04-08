@@ -22,7 +22,7 @@ public class StudentsFinByIdentification {
 
     @GetMapping("/FindByIdentification/{identification}")
     public ResponseEntity<?> findByIdentification(@PathVariable Long identification) {
-        Optional<Students> studentOptional = studentRepository.findAllByIdentification(identification);
+        Optional<Students> studentOptional = studentRepository.findStudentByIdentification(identification);
 
         if (studentOptional.isEmpty()) {
             return ResponseEntity.notFound().build();

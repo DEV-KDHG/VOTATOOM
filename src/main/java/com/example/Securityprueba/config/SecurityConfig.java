@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig  {
 
     private final JwtAuthenticationFilter jwtAuthenticattionFilter1;
 private final UserDetailsServiceImp userDetailsServiceImp;
@@ -37,8 +37,8 @@ private final UserDetailsServiceImp userDetailsServiceImp;
                 .authorizeHttpRequests(req -> req
                         .requestMatchers(String.valueOf(PathRequest.toStaticResources().atCommonLocations())).permitAll()
                         .requestMatchers( "/api/v1/students/login/students", "/login/**", "/register/jury","/register/admin").permitAll()
-                        .requestMatchers("/votes","/api/v1/personero/findAllByGrade/**","/api/v1/personero/findByFullName/**","/api/v1/personero/findById/{id}").hasAuthority("STUDENT")
-                        .requestMatchers( "save/comptroller","findByName/{name}", "list/comptroller", "findBy/{id}", "/api/v1/students1/").hasAuthority("ADMIN")
+                        .requestMatchers("/votes","/api/v1/personero/findAllByGrade","/api/v1/personero/findByFullName/**","/api/v1/personero/findById/{id}","/api/v1/representative/findAllGrade" ).hasAuthority("STUDENT")
+                        .requestMatchers( "save/comptroller","findByName/{name}", "list/comptroller", "findBy/{id}", "/api/v1/students1/**").hasAuthority("ADMIN")
                         .requestMatchers( "save/comptroller", "list/comptroller","/api/v1/representative/save","/api/v1/representative/**","api/v1/personero/save","/api/v1/personero/delete/**").hasAuthority("ADMIN")
                         .anyRequest().authenticated())
                 .userDetailsService(userDetailsServiceImp)
@@ -57,5 +57,7 @@ private final UserDetailsServiceImp userDetailsServiceImp;
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
+
+
 
 }

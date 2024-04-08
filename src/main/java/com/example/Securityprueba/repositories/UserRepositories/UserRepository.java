@@ -5,7 +5,9 @@ import com.example.Securityprueba.entities.UserModels.Users;
 import com.example.Securityprueba.entities.candidatesModels.Personero;
 import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,8 +20,11 @@ public interface UserRepository  extends JpaRepository <Users, Long> {
 Optional<Users> findById(Long id);
     void deleteById(Long id);
     List<Users> findAllByName(String name);
-    Optional<Students>findByIdentification(Long identification);
+    Optional<Users> findUserByIdentification(Long identification); // Cambiado el nombre del método para usuarios
 
-   Optional<Students> findAllByIdentification(Long identification);
+    Optional<Students> findStudentByIdentification(Long identification);
+    Optional<Students>findByName(String name);
+
+
   List<Students> findAllByGrade(Integer grade);
 }

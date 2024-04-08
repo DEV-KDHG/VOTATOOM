@@ -30,7 +30,7 @@ public class SavePerson {
     public ResponseEntity<?> savePersonero(@RequestBody PersoneroDTO personeroDTO) throws URISyntaxException {
 
         // Buscar el estudiante por identificación
-        Optional<Students> optionalStudents = studentsRepository.findByIdentification(personeroDTO.getIdentification());
+        Optional<Students> optionalStudents = studentsRepository.findStudentByIdentification(personeroDTO.getIdentification());
 
         if (optionalStudents.isEmpty()) {
             // Si no se encuentra el estudiante, retornar un error 404 Not Found
