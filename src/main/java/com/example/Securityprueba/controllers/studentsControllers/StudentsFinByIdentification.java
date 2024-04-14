@@ -40,6 +40,7 @@ public class StudentsFinByIdentification {
         studentDTO.setLastName(student.getLastName());
         studentDTO.setGrade(String.valueOf(student.getGrade()));
         studentDTO.setIdentification(student.getIdentification());
+        studentDTO.setCode(student.getCode());
         return studentDTO;
     }
 }

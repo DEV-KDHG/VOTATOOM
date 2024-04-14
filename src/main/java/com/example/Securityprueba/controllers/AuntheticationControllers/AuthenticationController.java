@@ -4,9 +4,11 @@ import com.example.Securityprueba.entities.SecurityModels.AuthenticationResponse
 import com.example.Securityprueba.entities.UserModels.Administrators;
 import com.example.Securityprueba.entities.UserModels.Jury;
 import com.example.Securityprueba.entities.UserModels.Students;
+import com.example.Securityprueba.service.userServices.AuthenticationRequest;
 import com.example.Securityprueba.service.userServices.AuthenticationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -62,5 +64,17 @@ public class AuthenticationController {
         AuthenticationResponse response = authenticationService.authenticate(request);
         return ResponseEntity.ok(response);
     }
+    @PostMapping("/authenticate/student")
+    public ResponseEntity<?> authenticateStudent(@RequestBody AuthenticationRequest request) {
+        try {
+            // Autenticar al estudiante y obtener el token de autenticación
+            AuthenticationResponse response = authenticationService.authenticateStudent(request);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            // Manejar cualquier excepción y devolver una respuesta de error
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Error de autenticación: " + e.getMessage());
+        }
+    }
+
 }
 

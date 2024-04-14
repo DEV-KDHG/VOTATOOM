@@ -15,6 +15,7 @@ import java.util.Optional;
 @NoRepositoryBean
 public interface UserRepository  extends JpaRepository <Users, Long> {
 
+    Optional<Students> findStudentByUsername(String username);
 
     Optional<Users> findByUsername(String username);
 Optional<Users> findById(Long id);
@@ -24,7 +25,6 @@ Optional<Users> findById(Long id);
 
     Optional<Students> findStudentByIdentification(Long identification);
     Optional<Students>findByName(String name);
-
-
+List<Users>findAll();
   List<Students> findAllByGrade(Integer grade);
 }

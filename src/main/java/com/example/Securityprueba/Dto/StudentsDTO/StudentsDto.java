@@ -23,5 +23,5 @@ public class StudentsDto {
     private String grade;
 
     private Long identification;
-    private Long code;
+    private String code;
 }

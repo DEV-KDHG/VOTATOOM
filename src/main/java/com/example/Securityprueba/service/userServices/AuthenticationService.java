@@ -13,6 +13,7 @@ import com.example.Securityprueba.repositories.UserRepositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -129,6 +130,27 @@ jury.setGradeASigne(request.getGradeASigne());
         }
     }
 
+    public AuthenticationResponse authenticateStudent(AuthenticationRequest request) {
+        // Buscar al estudiante por nombre de usuario
+        Students student = userRepository.findStudentByUsername(request.getUsername())
+                .orElseThrow(() -> new BadCredentialsException("Credenciales inválidas: Nombre de usuario no encontrado"));
+
+        // Verificar la contraseña
+        if (!passwordEncoder.matches(request.getPassword(), student.getPassword())) {
+            throw new BadCredentialsException("Credenciales inválidas: Contraseña incorrecta");
+        }
+
+        // Verificar el código único
+        if (!request.getCode().equals(student.getCode())) {
+            throw new BadCredentialsException("Credenciales inválidas: Código único incorrecto");
+        }
+
+        // Generar un token JWT si las credenciales son válidas
+        String token = jwtService.generateToken(student);
+
+        // Devolver una instancia de AuthenticationResponse con el token generado
+        return new AuthenticationResponse(token);
+    }
 }
 
 
