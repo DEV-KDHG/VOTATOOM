@@ -16,6 +16,7 @@ private  Long id;
 
 
     private String lastName;
+    @Column(unique = true)
     private Long identification;
     private Integer grade;
     private String photo;

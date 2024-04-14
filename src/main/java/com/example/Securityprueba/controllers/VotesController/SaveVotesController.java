@@ -30,7 +30,7 @@ public class SaveVotesController {
         String username = principal.getName();
         Optional<Users> userOptional = studentsRepository.findByUsername(username);
         Long idVotess= userOptional.get().getId();
-
+        System.out.println("H ELLO"+" "+username);
         Optional<Votes>optional=votesSerivice.findBystudentsId(idVotess);
         if (userOptional.isPresent() &&!optional.isPresent()) {
 
@@ -38,6 +38,8 @@ public class SaveVotesController {
                     .stateVotation(votesDto.getStateVotation())
                     .studentsId(idVotess)
                     .build();
+            System.out.println(username);
+
 
             votesSerivice.save(votes);
             return ResponseEntity.created(new URI("/votes")).build();

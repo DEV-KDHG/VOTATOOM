@@ -3,6 +3,7 @@ package com.example.Securityprueba.repositories.UserRepositories;
 import com.example.Securityprueba.entities.UserModels.Students;
 import com.example.Securityprueba.entities.UserModels.Users;
 import com.example.Securityprueba.entities.candidatesModels.Personero;
+import org.apache.catalina.User;
 import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
