@@ -1,5 +1,6 @@
 package com.example.Securityprueba.controllers.studentsControllers;
 
+import com.example.Securityprueba.Dto.StudentsDTO.StudentsDto;
 import com.example.Securityprueba.entities.SecurityModels.AuthenticationResponse;
 import com.example.Securityprueba.entities.UserModels.Students;
 import com.example.Securityprueba.service.userServices.AuthenticationService;
@@ -20,7 +21,7 @@ public class StudentsSave {
     public ResponseEntity<AuthenticationResponse> register(@RequestBody Students request) {
 
 
-        AuthenticationResponse response = authenticationService.register( request);
+        AuthenticationResponse response = authenticationService.registerStudent( request);
         return ResponseEntity.ok(response);
     }
 
