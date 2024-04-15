@@ -28,4 +28,7 @@ Optional<Users> findById(Long id);
     Optional<Students>findByName(String name);
 List<Users>findAll();
   List<Students> findAllByGrade(Integer grade);
+  List<Students>findStudentByStateVotationTrue();
+
+
 }
