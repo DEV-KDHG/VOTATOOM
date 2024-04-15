@@ -1,5 +1,6 @@
 package com.example.Securityprueba.service.userServices;
 
+import com.example.Securityprueba.Dto.StudentsDTO.LoginStudentDto;
 import com.example.Securityprueba.entities.SecurityModels.AuthenticationResponse;
 import com.example.Securityprueba.entities.SecurityModels.Role;
 import com.example.Securityprueba.entities.UserModels.Administrators;
@@ -43,7 +44,7 @@ public class AuthenticationService {
 
         this.authenticationManager = authenticationManager;
     }
-    public AuthenticationResponse register(Students studentRequest) {
+    public AuthenticationResponse registerStudent(Students studentRequest) {
         Students student = new Students();
 
         student.setUsername(studentRequest.getUsername());
@@ -101,7 +102,7 @@ jury.setGradeASigne(request.getGradeASigne());
         return new AuthenticationResponse(token);
     }
 
-    public AuthenticationResponse authenticate(Users request) {
+    public AuthenticationResponse authenticateAllLessStudents(Users request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
@@ -110,12 +111,8 @@ jury.setGradeASigne(request.getGradeASigne());
         );
 
         Users user = userRepository.findByUsername(request.getUsername()).orElseThrow();
-        if (user instanceof Students) {
-            Students students =  new Students();
-            students.getCode();
-            String token = jwtService.generateToken(user);
-            return new AuthenticationResponse("Estudiante autenticado: " + token);
-        } else if (user instanceof Administrators) {
+
+         if (user instanceof Administrators) {
             String token = jwtService.generateToken(user);
             return new AuthenticationResponse("Administrador autenticado: " + token);
 
@@ -130,7 +127,7 @@ jury.setGradeASigne(request.getGradeASigne());
         }
     }
 
-    public AuthenticationResponse authenticateStudent(AuthenticationRequest request) {
+    public AuthenticationResponse authenticateStudent(LoginStudentDto request) {
         // Buscar al estudiante por nombre de usuario
         Students student = userRepository.findStudentByUsername(request.getUsername())
                 .orElseThrow(() -> new BadCredentialsException("Credenciales inválidas: Nombre de usuario no encontrado"));

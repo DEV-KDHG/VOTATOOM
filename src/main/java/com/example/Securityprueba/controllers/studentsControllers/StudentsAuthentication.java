@@ -1,5 +1,6 @@
 package com.example.Securityprueba.controllers.studentsControllers;
 
+import com.example.Securityprueba.Dto.StudentsDTO.LoginStudentDto;
 import com.example.Securityprueba.entities.SecurityModels.AuthenticationResponse;
 import com.example.Securityprueba.entities.UserModels.Students;
 import com.example.Securityprueba.service.userServices.AuthenticationService;
@@ -19,8 +20,8 @@ public class StudentsAuthentication {
     private  AuthenticationService authenticationService;
 
     @PostMapping("/login/students")
-    public ResponseEntity<?> loginStudents(@RequestBody Students request) throws AuthenticationException {
-        AuthenticationResponse response = authenticationService.authenticate(request);
+    public ResponseEntity<?> loginStudents(@RequestBody LoginStudentDto request) throws AuthenticationException {
+        AuthenticationResponse response = authenticationService.authenticateStudent(request);
         return ResponseEntity.ok(response);
     }
 }
