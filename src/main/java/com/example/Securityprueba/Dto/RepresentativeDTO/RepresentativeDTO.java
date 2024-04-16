@@ -15,8 +15,10 @@ public class RepresentativeDTO {
     private String lastName;
     private Long identification;
     private Integer grade;
-    private String estado;
     private String photo;
     private String group;
 
+
 }
+
+

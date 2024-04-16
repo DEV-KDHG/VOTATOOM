@@ -1,5 +1,6 @@
 package com.example.Securityprueba.repositories.CandidatesRepository;
 
+import com.example.Securityprueba.Dto.RepresentativeDTO.RepresentativeDTO;
 import com.example.Securityprueba.entities.candidatesModels.Representative;
 import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;

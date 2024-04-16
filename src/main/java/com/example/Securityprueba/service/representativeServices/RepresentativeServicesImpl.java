@@ -1,5 +1,6 @@
 package com.example.Securityprueba.service.representativeServices;
 
+import com.example.Securityprueba.Dto.RepresentativeDTO.RepresentativeDTO;
 import com.example.Securityprueba.dao.RepresentativeDao.RepresentativeDao;
 import com.example.Securityprueba.entities.candidatesModels.Representative;
 import jakarta.transaction.Transactional;
@@ -15,6 +16,12 @@ public class RepresentativeServicesImpl implements RepresentativeServices {
     @Autowired
     private RepresentativeDao representativeDao;
 
+    /*
+    @Autowired
+    private RepresentativeDTO representativeDTO;
+
+     */
+
     @Transactional()
     @Override
     public void save(Representative representative) {
@@ -23,7 +30,7 @@ public class RepresentativeServicesImpl implements RepresentativeServices {
 
     @org.springframework.transaction.annotation.Transactional(readOnly = true)
     @Override
-    public List<Representative> findAll() {
+    public List<RepresentativeDTO> findAll() {
         return representativeDao.findAll();
     }
 
@@ -33,11 +40,13 @@ public class RepresentativeServicesImpl implements RepresentativeServices {
         return representativeDao.findByGrade(grade);
     }
 
+
     @Transactional
     @Override
     public Optional<Representative> findByIdentification(Long identificacion){
         return representativeDao.findByIdentification(identificacion);
     }
+
 
     @Transactional
     @Override

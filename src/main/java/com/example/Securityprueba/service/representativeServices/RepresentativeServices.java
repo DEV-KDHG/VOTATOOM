@@ -1,5 +1,6 @@
 package com.example.Securityprueba.service.representativeServices;
 
+import com.example.Securityprueba.Dto.RepresentativeDTO.RepresentativeDTO;
 import com.example.Securityprueba.entities.candidatesModels.Representative;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface RepresentativeServices {
 
     Optional<Representative> findByIdentification(Long identification);
 
-    List<Representative> findAll();
+    List<RepresentativeDTO> findAll();
 
     Optional<Representative> findByGrade(Integer grade);
 

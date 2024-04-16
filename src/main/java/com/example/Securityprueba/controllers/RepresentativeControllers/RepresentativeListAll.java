@@ -1,5 +1,6 @@
 package com.example.Securityprueba.controllers.RepresentativeControllers;
 
+        import com.example.Securityprueba.Dto.RepresentativeDTO.RepresentativeDTO;
         import com.example.Securityprueba.entities.candidatesModels.Representative;
         import com.example.Securityprueba.service.representativeServices.RepresentativeServicesImpl;
         import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class RepresentativeListAll {
     private RepresentativeServicesImpl representativeServices;
 
     @GetMapping("/findAll")
-    public List<Representative> findAll(){
+    public List<RepresentativeDTO> findAll(){
         return representativeServices.findAll();
 
     }
