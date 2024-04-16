@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 @Data
@@ -20,16 +21,38 @@ public class Students extends Users {
 
     @Column(name = "`group`")
     private String group;
-
+@Column(name = "state_votation")
+    private  Boolean stateVotation=false;
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
     // Método ejecutado antes de persistir la entidad por primera vez
     @PrePersist
     public void generateUniqueCode() {
-        this.code = UUID.randomUUID().toString();
-    }
+        // Longitud deseada del código
+        int length = 5;
 
+        // Caracteres permitidos para el código (letras mayúsculas y dígitos)
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+        // StringBuilder para construir el código
+        StringBuilder sb = new StringBuilder();
+
+        // Instancia de Random para generar números aleatorios
+        Random random = new Random();
+
+        // Generar el código con la longitud especificada
+        for (int i = 0; i < length; i++) {
+            // Obtener un índice aleatorio dentro del rango de caracteres
+            int index = random.nextInt(characters.length());
+
+            // Agregar el carácter correspondiente al código
+            sb.append(characters.charAt(index));
+        }
+
+        // Asignar el código generado al campo 'code'
+        this.code = sb.toString();
+    }
     public String getCode() {
         return code;
     }

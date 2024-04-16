@@ -1,6 +1,5 @@
 package com.example.Securityprueba.Dto.StudentsDTO;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,18 +9,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class StudentsDto {
-    private String username;
-
-
-    private String password;
-
+public class StudentDtoStateVotation {
     private String name;
     private  Boolean stateVotation;
 
     private String lastName;
-    private String grade;
+    private int grade;
 
     private Long identification;
-    private String code;
 }

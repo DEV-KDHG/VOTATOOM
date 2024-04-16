@@ -41,6 +41,7 @@ public class StudentsFinByIdentification {
         studentDTO.setGrade(String.valueOf(student.getGrade()));
         studentDTO.setIdentification(student.getIdentification());
         studentDTO.setCode(student.getCode());
+        studentDTO.setStateVotation(student.getStateVotation());
         return studentDTO;
     }
 }
