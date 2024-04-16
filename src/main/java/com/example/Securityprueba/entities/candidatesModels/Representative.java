@@ -10,4 +10,8 @@ import lombok.Data;
 @Builder
 @Table(name = "representative")
 public class Representative extends Candidates{
+
+    public Representative() {
+        // Lógica de inicialización del objeto Representative
+    }
 }

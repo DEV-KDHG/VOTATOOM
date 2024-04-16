@@ -1,5 +1,6 @@
 package com.example.Securityprueba.controllers.RepresentativeControllers;
 
+import com.example.Securityprueba.Dto.RepresentativeDTO.RepresentativeDTO;
 import com.example.Securityprueba.entities.candidatesModels.Representative;
 import com.example.Securityprueba.service.representativeServices.RepresentativeServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,23 @@ public class RepresentativeFindByIdentification {
 
     @GetMapping("/findByIdentification/{identification}")
     public ResponseEntity<?> findByIdentification(@PathVariable Long identification) {
-        Optional<Representative> representativeOptional = representativeServices.findByIdentification(identification);
-        if (representativeOptional.isPresent()) {
-            return ResponseEntity.ok(representativeOptional.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Representative not found with identification: " + identification);
+        Representative representative = representativeServices.findByIdentification(identification)
+                .orElse(null);
+
+        if (representative == null){
+            return ResponseEntity.notFound().build();
         }
+
+        RepresentativeDTO representativeDTO = RepresentativeDTO.builder()
+                .name(representative.getName())
+                .lastName(representative.getLastName())
+                .identification(representative.getIdentification())
+                .grade(representative.getGrade())
+                .photo(representative.getPhoto())
+                .group(representative.getGroup())
+                .build();
+
+        return ResponseEntity.ok(representativeDTO);
     }
 
 }

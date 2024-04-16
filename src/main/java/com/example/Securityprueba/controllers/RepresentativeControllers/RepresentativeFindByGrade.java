@@ -1,5 +1,6 @@
 package com.example.Securityprueba.controllers.RepresentativeControllers;
 
+import com.example.Securityprueba.Dto.RepresentativeDTO.RepresentativeDTO;
 import com.example.Securityprueba.entities.candidatesModels.Representative;
 import com.example.Securityprueba.service.representativeServices.RepresentativeServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ public class RepresentativeFindByGrade {
     @Autowired
     private RepresentativeServices representativeServices;
 
+    /*
     @GetMapping("/findByGrade/{grade}")
     public ResponseEntity<?> findByGrade(@PathVariable Integer grade) {
         Optional<Representative> representativeOptional = representativeServices.findByGrade(grade);
@@ -26,5 +28,29 @@ public class RepresentativeFindByGrade {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No representative found with grade: " + grade);
         }
+    }
+
+     */
+
+    @GetMapping("/findByGrade/{grade}")
+    public ResponseEntity<?> findByGrade(@PathVariable Integer grade) {
+
+        Representative representative = representativeServices.findByGrade(grade)
+                .orElse(null);
+
+        if (representative == null){
+            return ResponseEntity.notFound().build();
+        }
+        RepresentativeDTO representativeDTO = RepresentativeDTO.builder()
+                .name(representative.getName())
+                .lastName(representative.getLastName())
+                .identification(representative.getIdentification())
+                .grade(representative.getGrade())
+                .photo(representative.getPhoto())
+                .group(representative.getGroup())
+                .build();
+
+        return ResponseEntity.ok(representativeDTO);
+
     }
 }
