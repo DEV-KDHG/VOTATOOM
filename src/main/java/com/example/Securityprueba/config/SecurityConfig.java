@@ -39,20 +39,20 @@ private final UserDetailsServiceImp userDetailsServiceImp;
                                 .atCommonLocations())).permitAll()
                         .requestMatchers( "/api/v1/students/login/students", "/login/**",
                                 "/register/jury","/register/admin","authenticate/student").permitAll()
-                        .requestMatchers("/votes","/api/v1/personero/findAllByGrade",
+                        .requestMatchers("/api/v1/personero/findAllByGrade",
                                 "/api/v1/personero/findByFullName/**",
                                 "/api/v1/personero/findById/{id}","/api/v1/representative/findAllGrade",
-                                "/api/v1/save/votes" ).hasAuthority("STUDENT")
+                                "/jaja" ).hasAuthority("STUDENT")
 
                         .requestMatchers( "save/comptroller","save/comptroller",
                                 "/api/v1/students1/findByName/{name}",
                                 "list/comptroller", "findBy/{id}", "/api/v1/students1/** ",
                                 "list/comptroller","/api/v1/representative/save",
                                 "/api/v1/representative/**","api/v1/personero/save",
-                                "/api/v1/personero/delete/**","/api/v1/ListStates").hasAuthority("ADMIN")
+                                "/api/v1/personero/delete/**").hasAuthority("ADMIN")
                         .requestMatchers("/api/v1/students1/findAll",
-                                "/api/v1/students1/FindByIdentification/{identification}",
-                                "/api/v1/ListStates").hasAuthority("JURY")
+                                "/api/v1/students1/FindByIdentification/{identification}"
+                              ).hasAuthority("JURY")
 
                         .anyRequest().authenticated())
                 .userDetailsService(userDetailsServiceImp)

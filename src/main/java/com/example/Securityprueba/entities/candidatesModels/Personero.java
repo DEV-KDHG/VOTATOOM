@@ -11,5 +11,8 @@ import lombok.*;
 
 
 public class Personero  extends  Candidates{
-
+    public Personero() {
+        // Puedes llamar al constructor de la superclase si es necesario
+        super();
+    }
 }

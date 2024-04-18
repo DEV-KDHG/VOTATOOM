@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface RepresentativeServices {
 
     void save (Representative representative);
+    Optional<Representative>findById(Long id);
 
     Optional<Representative> findByIdentification(Long identification);
 

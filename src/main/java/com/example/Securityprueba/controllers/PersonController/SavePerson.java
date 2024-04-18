@@ -2,11 +2,17 @@ package com.example.Securityprueba.controllers.PersonController;
 
 import com.example.Securityprueba.Dto.PersoneroDto.PersoneroDTO;
 import com.example.Securityprueba.entities.UserModels.Students;
+import com.example.Securityprueba.entities.candidatesModels.Comptroller;
 import com.example.Securityprueba.entities.candidatesModels.Personero;
+import com.example.Securityprueba.entities.candidatesModels.Representative;
+import com.example.Securityprueba.repositories.CandidatesRepository.ComptrollerRepository;
 import com.example.Securityprueba.repositories.UserRepositories.StudentsRepository;
 import com.example.Securityprueba.service.PersoneroServices.PersonerosServices;
 import com.example.Securityprueba.service.PersoneroServices.PersonerosServicesImpl;
+import com.example.Securityprueba.service.comptrollerServices.ComptrollerServicesIMP;
+import com.example.Securityprueba.service.representativeServices.RepresentativeServicesImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,31 +32,45 @@ public class SavePerson {
 
     @Autowired
     private PersonerosServices personerosServices;
-    @PostMapping("/save")
-    public ResponseEntity<?> savePersonero(@RequestBody PersoneroDTO personeroDTO) throws URISyntaxException {
+    @Autowired
 
-        // Buscar el estudiante por identificación
-        Optional<Students> optionalStudents = studentsRepository.findStudentByIdentification(personeroDTO.getIdentification());
+    private RepresentativeServicesImpl representativeServices;
 
-        if (optionalStudents.isEmpty()) {
-            // Si no se encuentra el estudiante, retornar un error 404 Not Found
-            return ResponseEntity.notFound().build();
-        }
 
-        Students students = optionalStudents.get();
+    @Autowired
+    private ComptrollerRepository comptrollerRepository;
 
-        // Verificar si el grado del estudiante es mayor a 3 para crear el Personero
-        if (students.getGrade() > 3) {
+
+        @PostMapping("/save")
+        public ResponseEntity<?> savePersonero(@RequestBody PersoneroDTO personeroDTO) throws URISyntaxException {
+            // Buscar al estudiante por identificación
+            Optional<Students> optionalStudents = studentsRepository.findStudentByIdentification(personeroDTO.getIdentification());
+            if (optionalStudents.isEmpty()) {
+                return ResponseEntity.notFound().build();
+            }
+
+            Students students = optionalStudents.get();
+
+            // Verificar que el estudiante esté en grado 11
+            if (students.getGrade() != 11) {
+                return ResponseEntity.badRequest().body("El estudiante debe estar en grado 11 para ser Personero.");
+            }
+            Optional<Comptroller> existingComptroller = comptrollerRepository.findByIdentification(personeroDTO.getIdentification());
+            Optional<Representative> existingRepresentate = representativeServices.findByIdentification(personeroDTO.getIdentification());
 
             // Verificar si ya existe un Personero asociado a esta identificación
             Optional<Personero> existingPersonero = personerosServices.findByIdentification(personeroDTO.getIdentification());
-
             if (existingPersonero.isPresent()) {
-                // Si ya existe un Personero con la misma identificación, retornar un mensaje indicando que no se puede registrar
-                return ResponseEntity.badRequest().body("No se puede registrar porque ya existe un Personero para esta identificación");
+                return ResponseEntity.badRequest().body("Ya existe un Personero asociado a esta identificación.");
+            }
+            if (existingComptroller.isPresent()) {
+                return ResponseEntity.badRequest().body("Ya existe un Personero asociado a esta identificación.");
+            }
+            if (existingRepresentate.isPresent()) {
+                return ResponseEntity.badRequest().body("Ya existe un Personero asociado a esta identificación.");
             }
 
-            // Crear un nuevo Personero utilizando los datos del estudiante y PersoneroDTO
+            // Crear un nuevo Personero y asignar los valores
             Personero personero = new Personero();
             personero.setName(students.getName());
             personero.setLastName(students.getLastName());
@@ -59,13 +79,13 @@ public class SavePerson {
             personero.setGroup(students.getGroup());
             personero.setPhoto(personeroDTO.getPhoto());
 
-            // Guardar el nuevo Personero en la base de datos
-      personerosServicesImplc.save(personero);
-
-            // Retornar una respuesta con código 201 Created y la ubicación del recurso creado
-            return ResponseEntity.created(new URI("/api/v1/personero/" )).build();
+            // Guardar el nuevo Personero
+            try {
+                personerosServicesImplc.save(personero);
+                URI location = new URI("/api/v1/personero/" + personero.getId()); // Usar la URI completa del recurso creado
+                return ResponseEntity.created(location).build();
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al guardar el Personero.");
+            }
         }
-
-        // Si el grado del estudiante no es mayor a 3, retornar un mensaje indicando que no se pudo crear el Personero
-        return ResponseEntity.badRequest().body("No se puede registrar porque el grado del estudiante no es mayor a 3");
-    }}
+    }

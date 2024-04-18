@@ -2,8 +2,12 @@ package com.example.Securityprueba.controllers.RepresentativeControllers;
 
 import com.example.Securityprueba.Dto.RepresentativeDTO.RepresentativeDTO;
 import com.example.Securityprueba.entities.UserModels.Students;
+import com.example.Securityprueba.entities.candidatesModels.Comptroller;
+import com.example.Securityprueba.entities.candidatesModels.Personero;
 import com.example.Securityprueba.entities.candidatesModels.Representative;
+import com.example.Securityprueba.repositories.CandidatesRepository.ComptrollerRepository;
 import com.example.Securityprueba.repositories.UserRepositories.StudentsRepository;
+import com.example.Securityprueba.service.PersoneroServices.PersonerosServices;
 import com.example.Securityprueba.service.representativeServices.RepresentativeServices;
 import com.example.Securityprueba.service.representativeServices.RepresentativeServicesImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,29 +34,47 @@ public class RepresentativeSave {
     @Autowired
     private StudentsRepository studentsRepository;
 
+
+    @Autowired
+    private PersonerosServices personerosServices;
+
+
+
+    @Autowired
+    private ComptrollerRepository comptrollerRepository;
+
     @PostMapping("/save")
-    public ResponseEntity<?> saveRepresentative(@RequestBody RepresentativeDTO representativeDTO) throws URISyntaxException {
-        // Buscar al estudiante por identificación
-        Optional<Students> optionalStudents = studentsRepository.findStudentByIdentification(representativeDTO.getIdentification());
+    public ResponseEntity<?> saveRepresentative(@RequestBody RepresentativeDTO representativeDTO) {
+        try {
+            // Buscar al estudiante por identificación
+            Optional<Students> optionalStudents = studentsRepository.findStudentByIdentification(representativeDTO.getIdentification());
 
-        if (optionalStudents.isPresent()) {
-            // Si no se encuentra al estudiante, retornar un error 404 Not Found
-            return ResponseEntity.badRequest().body("Estudiante no encontrado. Debe registrar al estudiante primero.");
-        }
+            if (optionalStudents.isEmpty()) {
+                return ResponseEntity.badRequest().body("Estudiante no encontrado. Debe registrar al estudiante primero.");
+            }
 
-        Students students = optionalStudents.get();
+            Students students = optionalStudents.get();
 
-        // Verificar si el grado del estudiante es mayor a 3 para crear al representante
-        if (students.getGrade() > 3) {
+            // Verificar si el grado del estudiante es mayor a 3 para crear al representante
+            if (students.getGrade() == null || students.getGrade() <= 3) {
+                return ResponseEntity.badRequest().body("No se puede registrar porque el grado del estudiante no es mayor a 3");
+            }
 
             // Verificar si ya existe un representante asociado a esta identificación
             Optional<Representative> existingRepresentative = representativeServices.findByIdentification(representativeDTO.getIdentification());
+            Optional<Comptroller> existingComptroller = comptrollerRepository.findByIdentification(representativeDTO.getIdentification());
+            Optional<Personero> existingPersonero = personerosServices.findByIdentification(representativeDTO.getIdentification());
 
             if (existingRepresentative.isPresent()) {
-                // Si ya existe un representante con la misma identificación, retornar un mensaje indicando que no se puede registrar
                 return ResponseEntity.badRequest().body("No se puede registrar porque ya existe un Representante para esta identificación");
             }
 
+            if (existingComptroller.isPresent()) {
+                return ResponseEntity.badRequest().body("No se puede registrar porque ya existe un Representante para esta identificación");
+            }
+            if (existingPersonero.isPresent()) {
+                return ResponseEntity.badRequest().body("No se puede registrar porque ya existe un Representante para esta identificación");
+            }
             // Crear un nuevo representante utilizando los datos del estudiante y RepresentativeDTO
             Representative representative = new Representative();
             representative.setName(students.getName());
@@ -66,10 +88,10 @@ public class RepresentativeSave {
             representativeServices.save(representative);
 
             // Retornar una respuesta con código 201 Created y la ubicación del recurso creado
-            return ResponseEntity.created(new URI("/api/v1/representative/")).build();
+            return ResponseEntity.created(new URI("/api/v1/representatives/" + representative.getId())).build();
+        } catch (Exception e) {
+            // Capturar cualquier excepción y devolver un error interno del servidor
+            return ResponseEntity.status(500).body("Se produjo un error al procesar la solicitud.");
         }
-
-        // Si el grado del estudiante no es mayor a 3, retornar un mensaje indicando que no se pudo crear al representante
-        return ResponseEntity.badRequest().body("No se puede registrar porque el grado del estudiante no es mayor a 3");
     }
 }

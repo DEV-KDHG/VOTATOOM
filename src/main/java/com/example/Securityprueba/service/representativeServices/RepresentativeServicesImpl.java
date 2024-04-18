@@ -28,6 +28,11 @@ public class RepresentativeServicesImpl implements RepresentativeServices {
         representativeDao.save(representative);
     }
 
+    @Override
+    public Optional<Representative> findById(Long id) {
+        return representativeDao.findById(id);
+    }
+
     @org.springframework.transaction.annotation.Transactional(readOnly = true)
     @Override
     public List<RepresentativeDTO> findAll() {

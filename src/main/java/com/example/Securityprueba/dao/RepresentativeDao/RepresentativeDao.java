@@ -10,7 +10,7 @@ public interface RepresentativeDao {
     void save (Representative representative);
 
     List<RepresentativeDTO> findAll();
-
+Optional<Representative>findById(Long id);
     Optional<Representative> findByIdentification(Long identification);
 
     Optional<Representative> findByGrade(Integer grade);

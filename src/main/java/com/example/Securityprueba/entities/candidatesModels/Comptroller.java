@@ -9,8 +9,7 @@ import lombok.Data;
 @Table(name = "comptroller") // Opcional: puedes especificar el nombre de la tabla si quieres que sea diferente al nombre de la clase
 public class Comptroller extends Candidates {
 
-private String estado;
-    private Long studentsId;
+
 
     public Comptroller() {
         // Puedes llamar al constructor de la superclase si es necesario

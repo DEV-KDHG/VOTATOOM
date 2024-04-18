@@ -15,7 +15,8 @@ import java.util.Optional;
 
 @NoRepositoryBean
 public interface UserRepository  extends JpaRepository <Users, Long> {
-
+    boolean existsByUsername(String username);
+boolean existsByIdentification(Long identification);
     Optional<Students> findStudentByUsername(String username);
 
     Optional<Users> findByUsername(String username);

@@ -6,7 +6,7 @@ import lombok.*;
 
 @MappedSuperclass
 @Data
-@NoArgsConstructor(force = true, access = AccessLevel.PROTECTED)
+@NoArgsConstructor(force=true)
 @AllArgsConstructor
 public class Candidates {
     @Id

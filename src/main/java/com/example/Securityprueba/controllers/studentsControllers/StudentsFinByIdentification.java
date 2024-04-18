@@ -1,5 +1,6 @@
 package com.example.Securityprueba.controllers.studentsControllers;
 
+import com.example.Securityprueba.Dto.StudentsDTO.StudentDtoStateVotation;
 import com.example.Securityprueba.Dto.StudentsDTO.StudentsDto;
 import com.example.Securityprueba.entities.UserModels.Students;
 import com.example.Securityprueba.repositories.UserRepositories.StudentsRepository;
@@ -29,16 +30,16 @@ public class StudentsFinByIdentification {
         }
 
         Students student = studentOptional.get();
-        StudentsDto studentDTO = mapToDTO(student);
+        StudentDtoStateVotation studentDTO = mapToDTO(student);
 
         return ResponseEntity.ok(studentDTO);
     }
 
-    private StudentsDto mapToDTO(Students student) {
-        StudentsDto studentDTO = new StudentsDto();
+    private StudentDtoStateVotation mapToDTO(Students student) {
+        StudentDtoStateVotation studentDTO = new StudentDtoStateVotation();
         studentDTO.setName(student.getName());
         studentDTO.setLastName(student.getLastName());
-        studentDTO.setGrade(String.valueOf(student.getGrade()));
+        studentDTO.setGrade((student.getGrade()));
         studentDTO.setIdentification(student.getIdentification());
         studentDTO.setCode(student.getCode());
         studentDTO.setStateVotation(student.getStateVotation());

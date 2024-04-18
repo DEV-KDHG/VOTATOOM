@@ -1,5 +1,6 @@
 package com.example.Securityprueba.controllers.studentsControllers;
 
+import com.example.Securityprueba.Dto.StudentsDTO.StudentDtoStateVotation;
 import com.example.Securityprueba.Dto.StudentsDTO.StudentsDto;
 import com.example.Securityprueba.entities.UserModels.Students;
 import com.example.Securityprueba.entities.UserModels.Users;
@@ -30,22 +31,23 @@ public class StudentFindAll {
             return ResponseEntity.notFound().build();
         }
 
-        List<StudentsDto> studentDTOs = mapListToDTO(users);
+        List<StudentDtoStateVotation> studentDTOs = mapListToDTO(users);
 
         return ResponseEntity.ok(studentDTOs);
     }
 
-    private List<StudentsDto> mapListToDTO(List<Users> users) {
-        List<StudentsDto> studentDTOs = new ArrayList<>();
+    private List<StudentDtoStateVotation> mapListToDTO(List<Users> users) {
+        List<StudentDtoStateVotation> studentDTOs = new ArrayList<>();
         for (Users user : users) {
             if (user instanceof Students) { // Verificar si es una instancia de Students
                 Students student = (Students) user; // Convertir a Students
-                StudentsDto studentDTO = new StudentsDto();
+                StudentDtoStateVotation studentDTO = new StudentDtoStateVotation();
                 studentDTO.setName(student.getName());
                 studentDTO.setLastName(student.getLastName());
-                studentDTO.setGrade(String.valueOf(student.getGrade()));
+                studentDTO.setGrade((student.getGrade()));
                 studentDTO.setIdentification(student.getIdentification());
                 studentDTO.setCode(student.getCode());
+                studentDTO.setStateVotation(student.getStateVotation());
                 // Añade más asignaciones según sea necesario
                 studentDTOs.add(studentDTO);
             }

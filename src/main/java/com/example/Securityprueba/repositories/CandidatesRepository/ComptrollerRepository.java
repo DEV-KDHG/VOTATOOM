@@ -9,7 +9,7 @@ import java.util.Optional;
 @Repository
 public interface ComptrollerRepository extends JpaRepository <Comptroller, Long> {
 
-    Optional<Comptroller> findBystudentsId(Long studentsId);
+
     Optional<Comptroller> findByGrade(Integer grade);
     Optional<Comptroller> findByName(String name );
     Optional<Comptroller> findByIdentification(Long identification);

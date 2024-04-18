@@ -21,23 +21,22 @@ public class Votes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id ;
 
-@Column(unique = true)
     private  Long studentsId;
 
 @ManyToOne(targetEntity = Personero.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name ="id_personero",nullable = false)
+    @JoinColumn(name ="id_personero")
 @JsonIgnore
     private  Personero personero;
 
-    @ManyToOne(targetEntity = Comptroller.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name ="id_controller",nullable = false)
-    @JsonIgnore
-    private Comptroller comptroller;
-
-    @ManyToOne(targetEntity = Representative.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name ="id_representate",nullable = false)
-    @JsonIgnore
-
-    private Representative representative;
+//    @ManyToOne(targetEntity = Comptroller.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name ="id_controller",nullable = false)
+//    @JsonIgnore
+//    private Comptroller comptroller;
+//
+//    @ManyToOne(targetEntity = Representative.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name ="id_representate",nullable = false)
+//    @JsonIgnore
+//
+//    private Representative representative;
 
 }

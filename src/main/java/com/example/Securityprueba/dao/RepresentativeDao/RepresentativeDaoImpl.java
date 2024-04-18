@@ -31,6 +31,11 @@ public class RepresentativeDaoImpl implements RepresentativeDao{
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public Optional<Representative> findById(Long id) {
+        return representativeRepository.findById(id);
+    }
+
     private RepresentativeDTO convertToDto(Representative representative) {
         return RepresentativeDTO.builder()
                 .name(representative.getName())

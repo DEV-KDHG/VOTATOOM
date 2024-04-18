@@ -1,5 +1,8 @@
 package com.example.Securityprueba.entities.SecurityModels;
 
+import lombok.Data;
+
+@Data
 public class AuthenticationResponse {
     private String token;
 

@@ -23,7 +23,7 @@ public class ComptrollerListAll {
                         .name(comptroller.getName())
                         .lastName(comptroller.getLastName())
                         .grade(comptroller.getGrade())
-                        .estado(comptroller.getEstado())
+
                         .identification(comptroller.getIdentification())
                         .build()
         ).toList();

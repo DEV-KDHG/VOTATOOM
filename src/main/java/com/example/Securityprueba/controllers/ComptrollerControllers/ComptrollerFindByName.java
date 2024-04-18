@@ -28,7 +28,7 @@ public class ComptrollerFindByName {
                         .name(comptroller.getName())
                         .lastName(comptroller.getLastName())
                         .identification(comptroller.getIdentification())
-                        .estado(comptroller.getEstado())
+
                         .grade(comptroller.getGrade())
                         .photo(comptroller.getPhoto())
                         .build();

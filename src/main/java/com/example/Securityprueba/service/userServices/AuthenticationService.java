@@ -45,6 +45,13 @@ public class AuthenticationService {
         this.authenticationManager = authenticationManager;
     }
     public AuthenticationResponse registerStudent(Students studentRequest) {
+        if (studentRepository.existsByUsername(studentRequest.getUsername())) {
+            throw new IllegalArgumentException("El nombre de usuario ya está en uso.");
+        }
+        if (studentRepository.existsByIdentification(studentRequest.getIdentification())) {
+            throw new IllegalArgumentException("La identificación ya está en uso.");
+        }
+
         Students student = new Students();
 
         student.setUsername(studentRequest.getUsername());
@@ -70,7 +77,12 @@ student.setCode(studentRequest.getCode());
 
     public AuthenticationResponse registerAdmin(Administrators request) {
         Administrators administrador = new Administrators();
-
+        if (adminRepository.existsByUsername(request.getUsername())) {
+            throw new IllegalArgumentException("El nombre de usuario ya está en uso.");
+        }
+        if (adminRepository.existsByIdentification(request.getIdentification())) {
+            throw new IllegalArgumentException("La identificación ya está en uso.");
+        }
         administrador.setUsername(request.getUsername());
         administrador.setName(request.getName());
         administrador.setRole(Role.ADMIN);
@@ -84,22 +96,36 @@ administrador.setNameIns(administrador.getNameIns());
         return new AuthenticationResponse(token);
     }
 
-
     public AuthenticationResponse registerJury(Jury request) {
-    Jury jury = new Jury();
+        // Verificar si el nombre de usuario ya está en uso
+        if (juryRepository.existsByUsername(request.getUsername())) {
+            throw new IllegalArgumentException("El nombre de usuario '" + request.getUsername() + "' ya está en uso.");
+        }
 
+        // Verificar si la identificación ya está en uso
+        if (juryRepository.existsByIdentification(request.getIdentification())) {
+            throw new IllegalArgumentException("La identificación '" + request.getIdentification() + "' ya está en uso.");
+        }
+
+        // Guardar el nuevo jurado en la base de datos
+        Jury jury = new Jury();
         jury.setUsername(request.getUsername());
         jury.setName(request.getName());
         jury.setRole(Role.JURY);
+        jury.setIdentification(request.getIdentification());
         jury.setLastName(request.getLastName());
-jury.setGradeASigne(request.getGradeASigne());
-       jury.setPassword(passwordEncoder.encode(request.getPassword()));
+        jury.setGradeASigne(request.getGradeASigne());
+        jury.setPassword(passwordEncoder.encode(request.getPassword()));
+        // Generar el token JWT para el jurado registrado
+        String token = jwtService.generateToken(jury);
+        juryRepository.save(jury);
 
-        Jury savedJury = juryRepository.save(jury);
+        // Crear la respuesta de autenticación que incluye el token
+        AuthenticationResponse response = new AuthenticationResponse("Jurado registrado exitosamente.");
+        response.setToken(token);
 
-        String token = jwtService.generateToken(savedJury);
+        return response;
 
-        return new AuthenticationResponse(token);
     }
 
     public AuthenticationResponse authenticateAllLessStudents(Users request) {
