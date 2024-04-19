@@ -18,7 +18,7 @@ public class VotesDto {
 
     private  Long id ;
     private Personero personero;
-
+    private String stateVotation;
     private Comptroller comptroller;
     private Representative representative;
     private  Students students;

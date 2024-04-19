@@ -1,8 +1,12 @@
 package com.example.Securityprueba.entities.candidatesModels;
 
 import com.example.Securityprueba.entities.candidatesModels.Candidates;
+import com.example.Securityprueba.entities.votesModels.Votes;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -16,5 +20,7 @@ public class Comptroller extends Candidates {
         super();
     }
 
-
+    @OneToMany(mappedBy = "comptroller",targetEntity = Votes.class ,cascade = CascadeType.ALL , fetch = FetchType.LAZY,orphanRemoval = true)
+    @JsonIgnore
+    private List<Votes> votesList;
 }

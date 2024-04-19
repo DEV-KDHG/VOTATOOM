@@ -42,7 +42,7 @@ private final UserDetailsServiceImp userDetailsServiceImp;
                         .requestMatchers("/api/v1/personero/findAllByGrade",
                                 "/api/v1/personero/findByFullName/**",
                                 "/api/v1/personero/findById/{id}","/api/v1/representative/findAllGrade",
-                                "/jaja" ).hasAuthority("STUDENT")
+                                "/vote" ).hasAuthority("STUDENT")
 
                         .requestMatchers( "save/comptroller","save/comptroller",
                                 "/api/v1/students1/findByName/{name}",

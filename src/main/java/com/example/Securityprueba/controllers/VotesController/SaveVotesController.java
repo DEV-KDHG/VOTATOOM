@@ -9,6 +9,7 @@ import com.example.Securityprueba.repositories.UserRepositories.StudentsReposito
 import com.example.Securityprueba.repositories.UserRepositories.UserRepository;
 import com.example.Securityprueba.service.representativeServices.RepresentativeServicesImpl;
 import com.example.Securityprueba.service.votesServices.VotesSeriviceImpl;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,22 +28,48 @@ public class SaveVotesController {
 
     @Autowired
     private StudentsRepository studentsRepository;
+@Autowired
+private  RepresentativeServicesImpl representativeServices;
 
 
+    @PostMapping(value = "/vote")
+    public ResponseEntity<?> saveVote(@RequestBody VotesDto votesDto, Principal principal) {
+String username = principal.getName();
+Optional<Users>searchingName =studentsRepository.findByUsername(username);
+if (searchingName.isPresent()){
+    Users user=searchingName.get();
+    Optional<Students>findByIdStudents=studentsRepository.findStudentByIdentification(user.getIdentification());
+  Long idStundentSession = findByIdStudents.get().getId();
+  Integer gradeOfStudent = findByIdStudents.get().getGrade();
+ Optional<Votes>optionalVotes=votesSerivice.findBystudentsId(idStundentSession);
+  if (optionalVotes.isPresent()){
+     return ResponseEntity.ok(" no se puede debido qy ya existe en la base de datos");
+ }
 
 
-    @Autowired
-    private RepresentativeServicesImpl representativeServicesM;
+    Optional<Representative>findByIdRepresentative=representativeServices.findById(votesDto.getRepresentative().getId());
+Integer gradeRepresentative=findByIdRepresentative.get().getGrade();
+    if (gradeOfStudent==gradeRepresentative){
+        Votes votes = Votes.builder()
 
-@PostMapping("/jaja")
+                .comptroller(votesDto.getComptroller())
+                .personero(votesDto.getPersonero())
+                .studentsId(idStundentSession)
+                .representative(votesDto.getRepresentative())
+                .stateVotation(votesDto.getStateVotation())
+                .build();
 
-public ResponseEntity<?>guadar(@RequestBody Votes votesGet, Principal principal){
-    String username = principal.getName();
-    Optional<Users>users=studentsRepository.findByUsername(username);
-    Votes votes = new Votes();
-    votes.setPersonero(votesGet.getPersonero());
-    votes.setStudentsId(users.get().getId());
-    votesSerivice.save(votes);
-    return ResponseEntity.ok("se guardo");
-}
+        votesSerivice.save(votes);
+return ResponseEntity.ok("Registro de voto exitoso");
+    }
+    else {
+        return ResponseEntity.ok("El grado del representate no es igual")
+  ;  }
+    }
+return ResponseEntity.notFound().build();
+
+
+    }
+
+
 }

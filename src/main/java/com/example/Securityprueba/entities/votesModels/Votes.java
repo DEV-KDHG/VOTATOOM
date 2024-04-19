@@ -22,21 +22,19 @@ public class Votes {
     private  Long id ;
 
     private  Long studentsId;
+    private String stateVotation;
 
-@ManyToOne(targetEntity = Personero.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name ="id_personero")
-@JsonIgnore
-    private  Personero personero;
+    @ManyToOne(targetEntity = Personero.class)
+    @JoinColumn(name = "id_personero",nullable = false)
+    @JsonIgnore
+    private Personero personero;
+    @ManyToOne(targetEntity = Representative.class)
+    @JoinColumn(name = "id_representate",nullable = false)
+    private Representative representative;
 
-//    @ManyToOne(targetEntity = Comptroller.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name ="id_controller",nullable = false)
-//    @JsonIgnore
-//    private Comptroller comptroller;
-//
-//    @ManyToOne(targetEntity = Representative.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name ="id_representate",nullable = false)
-//    @JsonIgnore
-//
-//    private Representative representative;
+    @ManyToOne(targetEntity = Comptroller.class)
+    @JoinColumn(name = "id_comptroller",nullable = false)
+    @JsonIgnore
+    private Comptroller comptroller;
 
 }
