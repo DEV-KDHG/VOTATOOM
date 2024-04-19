@@ -10,24 +10,35 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class VotesSeriviceImpl implements  VotosService{
+public class   VotesSeriviceImpl implements  VotosService{
     @Autowired
     private VotesDaoImpl votesDao;
 
-    @Transactional()
+    @Transactional(readOnly = true)
     @Override
     public void save(Votes votes) {
         votesDao.save(votes);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Optional<Votes> findBystudentsId(Long studentsId) {
-        return votesDao.findBystudentsId(studentsId);
+return votesDao.findBystudentsId(studentsId);
     }
-
+@Transactional()
     @Override
-    public List<Object[]> findPersoneroVotesOrderByVoteCountDesc() {
-        return votesDao.findPersoneroVotesOrderByVoteCountDesc();
+    public List<Object[]> countVotesByPersoneros() {
+        return votesDao.countVotesByPersoneros();
+    }
+    @Transactional()
+    @Override
+    public List<Object[]> countVotesByComptrollers() {
+        return votesDao.countVotesByComptrollers();
+    }
+    @Transactional()
+    @Override
+    public List<Object[]> countVotesByRepresentativesOrderByGradoDesc() {
+        return votesDao.countVotesByRepresentativesOrderByGradoDesc();
     }
 
 

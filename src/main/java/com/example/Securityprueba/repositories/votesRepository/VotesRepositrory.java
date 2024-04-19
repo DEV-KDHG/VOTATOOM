@@ -11,9 +11,23 @@ import java.util.Optional;
 @Repository
 public interface VotesRepositrory  extends JpaRepository<Votes,Long> {
     Optional<Votes> findBystudentsId(Long studentsId);
-    @Query("SELECT v.personero, COUNT(v) AS voteCount " +
+
+    @Query(value = "SELECT c.name AS name, c.identification AS identification, COUNT(*) AS voteCount " +
             "FROM Votes v " +
-            "GROUP BY v.personero " +
-            "ORDER BY voteCount DESC")
-    List<Object[]> findPersoneroVotesOrderByVoteCountDesc();
+            "JOIN v.personero c " +  // Utiliza la relación entre Votes y Personero (o candidato)
+            "GROUP BY c.name, c.identification")
+    List<Object[]> countVotesByPersoneros();
+
+    @Query(value = "SELECT c.name AS name, c.identification AS identification, COUNT(*) AS voteCount " +
+            "FROM Votes v " +
+            "JOIN v.comptroller c " +  // Utiliza la relación entre Votes y Comptroller
+            "GROUP BY c.name, c.identification")
+    List<Object[]> countVotesByComptrollers();
+
+    @Query(value = "SELECT r.grade AS grado, r.name AS name, r.identification AS identification, COUNT(*) AS voteCount " +
+            "FROM Votes v " +
+            "JOIN v.representative r " +  // Utiliza la relación entre Votes y Representative
+            "GROUP BY r.grade, r.name, r.identification " +
+            "ORDER BY r.grade DESC")
+    List<Object[]> countVotesByRepresentativesOrderByGradoDesc();
 }

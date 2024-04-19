@@ -44,12 +44,13 @@ private final UserDetailsServiceImp userDetailsServiceImp;
                                 "/api/v1/personero/findById/{id}","/api/v1/representative/findAllGrade",
                                 "/vote" ).hasAuthority("STUDENT")
 
-                        .requestMatchers( "save/comptroller","save/comptroller",
+                        .requestMatchers( "save/comptroller","save/comptroller","/count",
                                 "/api/v1/students1/findByName/{name}",
-                                "list/comptroller", "findBy/{id}", "/api/v1/students1/** ",
+                                "list/comptroller", "findBy/{id}", "/api/v1/students1/** ","votes/**",
                                 "list/comptroller","/api/v1/representative/save",
                                 "/api/v1/representative/**","api/v1/personero/save",
                                 "/api/v1/personero/delete/**").hasAuthority("ADMIN")
+
                         .requestMatchers("/api/v1/students1/findAll",
                                 "/api/v1/students1/FindByIdentification/{identification}"
                               ).hasAuthority("JURY")

@@ -18,14 +18,25 @@ public class VotesDaoImpl  implements  VotesDao{
         votesRepositrory.save(votes);
     }
 
-    @Override
-    public List<Object[]> findPersoneroVotesOrderByVoteCountDesc() {
-        return votesRepositrory.findPersoneroVotesOrderByVoteCountDesc();
-    }
 
 
     @Override
     public Optional<Votes> findBystudentsId(Long studentsId) {
         return votesRepositrory.findBystudentsId(studentsId);
+    }
+
+    @Override
+    public List<Object[]> countVotesByPersoneros() {
+        return votesRepositrory.countVotesByPersoneros();
+    }
+
+    @Override
+    public List<Object[]> countVotesByComptrollers() {
+        return votesRepositrory.countVotesByComptrollers();
+    }
+
+    @Override
+    public List<Object[]> countVotesByRepresentativesOrderByGradoDesc() {
+        return votesRepositrory.countVotesByRepresentativesOrderByGradoDesc();
     }
 }
