@@ -14,7 +14,7 @@ public class   VotesSeriviceImpl implements  VotosService{
     @Autowired
     private VotesDaoImpl votesDao;
 
-    @Transactional(readOnly = true)
+    @Transactional()
     @Override
     public void save(Votes votes) {
         votesDao.save(votes);
