@@ -13,7 +13,7 @@ public interface RepresentativeDao {
 Optional<Representative>findById(Long id);
     Optional<Representative> findByIdentification(Long identification);
 
-    Optional<Representative> findByGrade(Integer grade);
+    List<Representative> findByGrade(Integer grade);
 
     List<Representative> findByName(String name);
 
