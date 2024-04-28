@@ -7,14 +7,12 @@ import com.example.Securityprueba.entities.UserModels.Users;
 import com.example.Securityprueba.repositories.UserRepositories.StudentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/api/v1/students1")
 
@@ -23,7 +21,7 @@ public class StudentFindAll {
     private StudentsRepository studentsRepository;
 
 
-    @GetMapping("/findAll")
+    @GetMapping("/api/v1/students1")
     public ResponseEntity<?> responseEntity() {
         List<Users> users = studentsRepository.findAll(); // Obtener usuarios
 

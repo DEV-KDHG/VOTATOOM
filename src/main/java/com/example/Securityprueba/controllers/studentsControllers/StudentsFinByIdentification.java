@@ -5,12 +5,11 @@ import com.example.Securityprueba.Dto.StudentsDTO.StudentsDto;
 import com.example.Securityprueba.entities.UserModels.Students;
 import com.example.Securityprueba.repositories.UserRepositories.StudentsRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/api/v1/students1")
 public class StudentsFinByIdentification {
