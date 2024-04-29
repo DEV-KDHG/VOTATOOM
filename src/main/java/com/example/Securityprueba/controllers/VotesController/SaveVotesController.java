@@ -1,5 +1,6 @@
 package com.example.Securityprueba.controllers.VotesController;
 
+
 import com.example.Securityprueba.Dto.VotesDto.VotesDto;
 import com.example.Securityprueba.entities.UserModels.Students;
 import com.example.Securityprueba.entities.UserModels.Users;
@@ -40,10 +41,11 @@ if (searchingName.isPresent()){
     Users user=searchingName.get();
     Optional<Students>findByIdStudents=studentsRepository.findStudentByIdentification(user.getIdentification());
   Long idStundentSession = findByIdStudents.get().getId();
+  Long identification = findByIdStudents.get().getIdentification();
   Integer gradeOfStudent = findByIdStudents.get().getGrade();
  Optional<Votes>optionalVotes=votesSerivice.findBystudentsId(idStundentSession);
   if (optionalVotes.isPresent()){
-     return ResponseEntity.ok(" no se puede debido qy ya existe en la base de datos");
+     return ResponseEntity.ok(" no se puede debido  ya existe en la base de datos");
  }
 
 
@@ -56,8 +58,15 @@ Integer gradeRepresentative=findByIdRepresentative.get().getGrade();
                 .personero(votesDto.getPersonero())
                 .studentsId(idStundentSession)
                 .representative(votesDto.getRepresentative())
-                .stateVotation(votesDto.getStateVotation())
                 .build();
+        Optional<Students>students=studentsRepository.findStudentByIdentification(identification);
+
+        Students students1 = new Students();
+        students1.setStateVotation(true);
+
+        studentsRepository.save(students1);
+
+
 
         votesSerivice.save(votes);
 return ResponseEntity.ok("Registro de voto exitoso");
