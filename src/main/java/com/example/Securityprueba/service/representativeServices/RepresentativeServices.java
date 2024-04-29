@@ -15,7 +15,7 @@ public interface RepresentativeServices {
 
     List<RepresentativeDTO> findAll();
 
-    Optional<Representative> findByGrade(Integer grade);
+    List<Representative> findByGrade(Integer grade);
 
     List<Representative> findByName(String name);
 

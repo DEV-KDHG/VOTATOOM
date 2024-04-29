@@ -6,51 +6,43 @@ import com.example.Securityprueba.service.representativeServices.RepresentativeS
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/representative")
 public class RepresentativeFindByGrade {
     @Autowired
     private RepresentativeServices representativeServices;
 
-    /*
-    @GetMapping("/findByGrade/{grade}")
-    public ResponseEntity<?> findByGrade(@PathVariable Integer grade) {
-        Optional<Representative> representativeOptional = representativeServices.findByGrade(grade);
-        if (representativeOptional.isPresent()) {
-            return ResponseEntity.ok(representativeOptional.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No representative found with grade: " + grade);
-        }
-    }
-
-     */
 
     @GetMapping("/findByGrade/{grade}")
     public ResponseEntity<?> findByGrade(@PathVariable Integer grade) {
+        List<Representative> representatives = representativeServices.findByGrade(grade);
 
-        Representative representative = representativeServices.findByGrade(grade)
-                .orElse(null);
-
-        if (representative == null){
+        if (representatives.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        RepresentativeDTO representativeDTO = RepresentativeDTO.builder()
-                .name(representative.getName())
-                .lastName(representative.getLastName())
-                .identification(representative.getIdentification())
-                .grade(representative.getGrade())
-                .photo(representative.getPhoto())
-                .group(representative.getGroup())
-                .build();
 
-        return ResponseEntity.ok(representativeDTO);
+        List<RepresentativeDTO> representativeDTOs = new ArrayList<>();
 
+        for (Representative representative : representatives) {
+            RepresentativeDTO representativeDTO = RepresentativeDTO.builder()
+                    .name(representative.getName())
+                    .lastName(representative.getLastName())
+                    .identification(representative.getIdentification())
+                    .grade(representative.getGrade())
+                    .photo(representative.getPhoto())
+                    .group(representative.getGroup())
+                    .build();
+            representativeDTOs.add(representativeDTO);
+        }
+
+        return ResponseEntity.ok(representativeDTOs);
     }
+
 }

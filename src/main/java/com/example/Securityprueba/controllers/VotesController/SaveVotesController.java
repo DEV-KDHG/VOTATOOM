@@ -29,56 +29,52 @@ public class SaveVotesController {
 
     @Autowired
     private StudentsRepository studentsRepository;
-@Autowired
-private  RepresentativeServicesImpl representativeServices;
+    @Autowired
+    private  RepresentativeServicesImpl representativeServices;
 
 
     @PostMapping(value = "/vote")
     public ResponseEntity<?> saveVote(@RequestBody VotesDto votesDto, Principal principal) {
-String username = principal.getName();
-Optional<Users>searchingName =studentsRepository.findByUsername(username);
-if (searchingName.isPresent()){
-    Users user=searchingName.get();
-    Optional<Students>findByIdStudents=studentsRepository.findStudentByIdentification(user.getIdentification());
-  Long idStundentSession = findByIdStudents.get().getId();
-  Long identification = findByIdStudents.get().getIdentification();
-  Integer gradeOfStudent = findByIdStudents.get().getGrade();
- Optional<Votes>optionalVotes=votesSerivice.findBystudentsId(idStundentSession);
-  if (optionalVotes.isPresent()){
-     return ResponseEntity.ok(" no se puede debido  ya existe en la base de datos");
- }
+        String username = principal.getName();
+        Optional<Users> searchingUser = studentsRepository.findByUsername(username);
 
+        if (searchingUser.isPresent()) {
+            Users user = searchingUser.get();
+            Optional<Students> findByIdStudents = studentsRepository.findStudentByIdentification(user.getIdentification());
 
-    Optional<Representative>findByIdRepresentative=representativeServices.findById(votesDto.getRepresentative().getId());
-Integer gradeRepresentative=findByIdRepresentative.get().getGrade();
-    if (gradeOfStudent==gradeRepresentative){
-        Votes votes = Votes.builder()
+            if (findByIdStudents.isPresent()) {
+                Long studentId = findByIdStudents.get().getId();
+                Integer gradeOfStudent = findByIdStudents.get().getGrade();
 
-                .comptroller(votesDto.getComptroller())
-                .personero(votesDto.getPersonero())
-                .studentsId(idStundentSession)
-                .representative(votesDto.getRepresentative())
-                .build();
-        Optional<Students>students=studentsRepository.findStudentByIdentification(identification);
+                Optional<Votes> existingVotes = votesSerivice.findBystudentsId(studentId);
+                if (existingVotes.isPresent()) {
+                    return ResponseEntity.ok("No se puede votar de nuevo debido a que ya existe un registro en la base de datos");
+                }
 
-        Students students1 = new Students();
-        students1.setStateVotation(true);
+                Optional<Representative> findByIdRepresentative = representativeServices.findById(votesDto.getRepresentative().getId());
+                if (findByIdRepresentative.isPresent()) {
+                    Integer gradeRepresentative = findByIdRepresentative.get().getGrade();
+                    if (gradeOfStudent.equals(gradeRepresentative)) {
+                        Votes votes = Votes.builder()
+                                .comptroller(votesDto.getComptroller())
+                                .personero(votesDto.getPersonero())
+                                .studentsId(studentId)
+                                .representative(votesDto.getRepresentative())
+                                .build();
 
-        studentsRepository.save(students1);
+                        votesSerivice.save(votes);
 
+                        // Actualizar estado de votación del estudiante
+                        Students studentToUpdate = findByIdStudents.get();
+                        studentToUpdate.setStateVotation(true);
+                        studentsRepository.save(studentToUpdate);
 
-
-        votesSerivice.save(votes);
-return ResponseEntity.ok("Registro de voto exitoso");
-    }
-    else {
-        return ResponseEntity.ok("El grado del representate no es igual")
-  ;  }
-    }
-return ResponseEntity.notFound().build();
-
-
-    }
-
-
-}
+                        return ResponseEntity.ok("Registro de voto exitoso");
+                    } else {
+                        return ResponseEntity.ok("El grado del representante no es igual al del estudiante");
+                    }
+                }
+            }
+        }
+        return ResponseEntity.notFound().build();
+    }}

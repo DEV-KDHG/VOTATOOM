@@ -20,7 +20,7 @@ public class StudentFindAll {
     private StudentsRepository studentsRepository;
 
 
-    @GetMapping("/findAll")
+    @GetMapping("/api/v1/students1")
     public ResponseEntity<?> responseEntity() {
         List<Users> users = studentsRepository.findAll(); // Obtener usuarios
 

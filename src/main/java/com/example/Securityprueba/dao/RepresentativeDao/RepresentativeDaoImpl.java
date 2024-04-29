@@ -55,7 +55,7 @@ public class RepresentativeDaoImpl implements RepresentativeDao{
     }
 
     @Override
-    public Optional<Representative> findByGrade(Integer grade) {
+    public List<Representative> findByGrade(Integer grade) {
         return representativeRepository.findByGrade(grade);
     }
 
