@@ -19,7 +19,7 @@ public interface RepresentativeServices {
 
     List<Representative> findByName(String name);
 
-    void deleteById(Long id);
+    void deleteByIdentification(Long identification);
 
 
 }
