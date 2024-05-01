@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/api/v1/students1")
-
+@CrossOrigin(origins ="http://localhost:5173/")
 public class StudentFindAll {
     @Autowired
     private StudentsRepository studentsRepository;

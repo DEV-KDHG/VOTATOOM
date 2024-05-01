@@ -37,8 +37,8 @@ private final UserDetailsServiceImp userDetailsServiceImp;
                 .authorizeHttpRequests(req -> req
                         .requestMatchers(String.valueOf(PathRequest.toStaticResources()
                                 .atCommonLocations())).permitAll()
-                        .requestMatchers( "/api/v1/students/login/students", "/login/**",
-                                "/register/jury","/register/admin","authenticate/student").permitAll()
+                        .requestMatchers( "/api/v1/students/login/students", "/api/v2/login/admin",
+                                "/register/jury","/api/v2/register/admin","authenticate/student", "/api/v1/students1/findAll ").permitAll()
                         .requestMatchers("/api/v1/personero/findAllByGrade",
                                 "/api/v1/personero/findByFullName/**",
                                 "/api/v1/personero/findById/{id}","/api/v1/representative/findAllGrade",
@@ -46,11 +46,12 @@ private final UserDetailsServiceImp userDetailsServiceImp;
 
                         .requestMatchers( "save/comptroller","save/comptroller","/count",
                                 "/api/v1/students1/findByName/{name}",
-                                "list/comptroller", "findBy/{id}", "/api/v1/students1/** ","votes/**",
+                                "list/comptroller", "findBy/{id}", "/api/v1/students/register/students1","votes/**",
                                 "list/comptroller","/api/v1/representative/save",
                                 "/api/v1/representative/**","api/v1/personero/save",
-                                "/api/v1/personero/delete/**","/api/v1/students1/FindByIdentification/{identification}").hasAuthority("ADMIN")
-
+                                "/api/v1/personero/delete/**","/api/v1/students1/FindByIdentification/{identification}",
+                                "/api/v1/representative/**","api/v1/personero/save","/api/v1/students1/findAll",
+                                "/api/v1/personero/delete/**", "/api/v1/students1/FindByIdentification/{identification}").hasAuthority("ADMIN")
                         .requestMatchers("/api/v1/students1/findAll",
                                 "/api/v1/students1/FindByIdentification/{identification}"
                               ).hasAuthority("JURY")

@@ -86,6 +86,7 @@ student.setCode(studentRequest.getCode());
         administrador.setUsername(request.getUsername());
         administrador.setName(request.getName());
         administrador.setRole(Role.ADMIN);
+        administrador.setIdentification(request.getIdentification());
         administrador.setLastName(request.getLastName());
 administrador.setNameIns(administrador.getNameIns());
         administrador.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -140,7 +141,7 @@ administrador.setNameIns(administrador.getNameIns());
 
          if (user instanceof Administrators) {
             String token = jwtService.generateToken(user);
-            return new AuthenticationResponse("Administrador autenticado: " + token);
+            return new AuthenticationResponse( token);
 
 
         } else if (user instanceof Jury) {

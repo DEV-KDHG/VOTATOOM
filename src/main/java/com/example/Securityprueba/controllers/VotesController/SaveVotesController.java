@@ -1,5 +1,6 @@
 package com.example.Securityprueba.controllers.VotesController;
 
+
 import com.example.Securityprueba.Dto.VotesDto.VotesDto;
 import com.example.Securityprueba.entities.UserModels.Students;
 import com.example.Securityprueba.entities.UserModels.Users;
@@ -28,8 +29,8 @@ public class SaveVotesController {
 
     @Autowired
     private StudentsRepository studentsRepository;
-@Autowired
-private  RepresentativeServicesImpl representativeServices;
+    @Autowired
+    private  RepresentativeServicesImpl representativeServices;
 
 
     @PostMapping(value = "/vote")
@@ -59,7 +60,6 @@ private  RepresentativeServicesImpl representativeServices;
                                 .personero(votesDto.getPersonero())
                                 .studentsId(studentId)
                                 .representative(votesDto.getRepresentative())
-                                .stateVotation(votesDto.getStateVotation())
                                 .build();
 
                         votesSerivice.save(votes);
@@ -77,5 +77,4 @@ private  RepresentativeServicesImpl representativeServices;
             }
         }
         return ResponseEntity.notFound().build();
-    }
-}
+    }}
