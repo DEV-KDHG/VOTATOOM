@@ -23,5 +23,6 @@ public interface RepresentativeRepository extends JpaRepository<Representative, 
 
     List<Representative> findAllByGrade(Integer grade);
 
+    void deleteByIdentification(Long identification);
 
 }

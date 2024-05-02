@@ -61,7 +61,7 @@ public class RepresentativeServicesImpl implements RepresentativeServices {
 
     @Transactional
     @Override
-    public void deleteById(Long id) {
-        representativeDao.deleteById(id);
+    public void deleteByIdentification(Long identification) {
+        representativeDao.deleteByIdentification(identification);
     }
 }

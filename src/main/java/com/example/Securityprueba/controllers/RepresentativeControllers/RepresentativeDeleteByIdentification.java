@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/api/v1/representative")
-public class RepresentativeDeleteById {
+public class RepresentativeDeleteByIdentification {
     @Autowired
     private RepresentativeServices representativeServices;
 
-    @DeleteMapping("/deleteById/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable Long id) {
+    @DeleteMapping("/deleteByIdentification/{identification}")
+    public ResponseEntity<String> deleteById(@PathVariable Long identification) {
         try {
-            representativeServices.deleteById(id);
-            return ResponseEntity.ok("Representative with ID: " + id + " deleted successfully.");
+            representativeServices.deleteByIdentification(identification);
+            return ResponseEntity.ok("Representative with ID: " + identification + " deleted successfully.");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to delete representative with ID: " + id);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to delete representative with ID: " + identification);
         }
     }
 }

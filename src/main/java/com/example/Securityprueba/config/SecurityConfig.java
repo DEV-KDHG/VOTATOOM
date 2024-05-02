@@ -48,8 +48,13 @@ private final UserDetailsServiceImp userDetailsServiceImp;
                                 "/api/v1/students1/findByName/{name}",
                                 "list/comptroller", "findBy/{id}", "/api/v1/students/register/students1","votes/**","/api/v1/students1/students/findByGrade/{grade}",
                                 "list/comptroller","/api/v1/representative/save",
-                                "/api/v1/representative/**","api/v1/personero/save","/api/v1/students1/students1/findAll",
-                                "/api/v1/personero/delete/**", "/api/v1/students1/FindByIdentification/{identification} " ,"/api/v1/students/DeleteByIdentification/**").hasAuthority("ADMIN")
+
+
+
+                                "/api/v1/representative/**","api/v1/personero/save",
+                                "/api/v1/personero/delete/**","/api/v1/students1/FindByIdentification/{identification}",
+                                "/api/v1/representative/**","api/v1/personero/save","/api/v1/students1/findAll",
+                                "/api/v1/personero/delete/**", "/api/v1/students1/FindByIdentification/{identification}").hasAuthority("ADMIN")
 
                         .requestMatchers("/api/v1/students1/findAll",
                                 "/api/v1/students1/FindByIdentification/{identification}"

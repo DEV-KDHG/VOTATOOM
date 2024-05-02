@@ -17,5 +17,5 @@ Optional<Representative>findById(Long id);
 
     List<Representative> findByName(String name);
 
-    void deleteById(Long id);
+    void deleteByIdentification(Long identification);
 }
