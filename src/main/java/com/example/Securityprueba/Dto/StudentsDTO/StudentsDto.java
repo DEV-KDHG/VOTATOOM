@@ -24,4 +24,6 @@ public class StudentsDto {
 
     private Long identification;
     private String code;
+
+    private String group;
 }

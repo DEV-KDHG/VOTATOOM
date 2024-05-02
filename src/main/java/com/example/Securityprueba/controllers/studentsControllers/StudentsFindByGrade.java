@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-@CrossOrigin(origins = "*")
+
 @RestController
 @RequestMapping(value = "/api/v1/students1")
+@CrossOrigin(origins ="http://localhost:5173/")
 public class StudentsFindByGrade {
 
 

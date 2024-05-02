@@ -53,8 +53,8 @@ public class AuthenticationService {
         }
 
         Students student = new Students();
-
-        student.setUsername(studentRequest.getUsername());
+student.setGroup(studentRequest.getGroup());
+        student.setUsername(String.valueOf(studentRequest.getIdentification()));
         student.setName(studentRequest.getName());
         student.setRole(Role.STUDENT);
         student.setLastName(studentRequest.getLastName());
@@ -73,6 +73,10 @@ student.setCode(studentRequest.getCode());
 
     public void deleteStudentById(Long studentId) {
         studentRepository.deleteById(studentId);
+    }
+
+    public void deleteStudentByIdentification(Long Identification) {
+        studentRepository.deleteByIdentification(Identification);
     }
 
     public AuthenticationResponse registerAdmin(Administrators request) {
