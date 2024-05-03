@@ -28,8 +28,8 @@ public class SaveVotesController {
 
     @Autowired
     private StudentsRepository studentsRepository;
-@Autowired
-private  RepresentativeServicesImpl representativeServices;
+    @Autowired
+    private  RepresentativeServicesImpl representativeServices;
 
 
     @PostMapping(value = "/vote")
@@ -77,5 +77,4 @@ private  RepresentativeServicesImpl representativeServices;
             }
         }
         return ResponseEntity.notFound().build();
-    }
-}
+    }}

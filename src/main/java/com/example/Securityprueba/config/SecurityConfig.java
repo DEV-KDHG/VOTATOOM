@@ -49,6 +49,7 @@ private final UserDetailsServiceImp userDetailsServiceImp;
                                 "list/comptroller", "findBy/{id}", "/api/v1/students1/** ","votes/**",
                                 "list/comptroller","/api/v1/representative/save",
                                 "/api/v1/representative/**","api/v1/personero/save",
+                                "api/v1/students1//students/**",
                                 "/api/v1/personero/delete/**").hasAuthority("ADMIN")
 
                         .requestMatchers("/api/v1/students1/findAll",

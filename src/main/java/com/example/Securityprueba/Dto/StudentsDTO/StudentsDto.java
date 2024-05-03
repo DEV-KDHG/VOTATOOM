@@ -18,7 +18,7 @@ public class StudentsDto {
 
     private String name;
     private  Boolean stateVotation;
-
+private  String group;
     private String lastName;
     private String grade;
 
