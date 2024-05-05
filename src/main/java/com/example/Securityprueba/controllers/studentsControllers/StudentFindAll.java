@@ -12,18 +12,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/api/v1/students1")
-
+@CrossOrigin(origins ="http://localhost:5173/")
 public class StudentFindAll {
     @Autowired
     private StudentsRepository studentsRepository;
 
-
-    @GetMapping("/api/v1/students1")
+    @GetMapping("/students1/findAll")
     public ResponseEntity<?> responseEntity() {
-        List<Users> users = studentsRepository.findAll(); // Obtener usuarios
+        List<Users> users = studentsRepository.findAll(); // Obtain users
 
         if (users.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -37,16 +35,26 @@ public class StudentFindAll {
     private List<StudentDtoStateVotation> mapListToDTO(List<Users> users) {
         List<StudentDtoStateVotation> studentDTOs = new ArrayList<>();
         for (Users user : users) {
-            if (user instanceof Students) { // Verificar si es una instancia de Students
-                Students student = (Students) user; // Convertir a Students
+            if (user instanceof Students) { // Check if it's an instance of Students
+                Students student = (Students) user; // Cast to Students
                 StudentDtoStateVotation studentDTO = new StudentDtoStateVotation();
                 studentDTO.setName(student.getName());
                 studentDTO.setLastName(student.getLastName());
+                studentDTO.setGrade(student.getGrade());
                 studentDTO.setGrade((student.getGrade()));
                 studentDTO.setIdentification(student.getIdentification());
                 studentDTO.setCode(student.getCode());
                 studentDTO.setStateVotation(student.getStateVotation());
-                // Añade más asignaciones según sea necesario
+
+                // Check for null before setting grade
+                if (student.getGrade() != null) {
+                    studentDTO.setGrade(student.getGrade());
+                } else {
+                    // Set a default value or handle accordingly
+                    studentDTO.setGrade(0); // Example: Set to 0 if grade is null
+                }
+
+                // Add more assignments as needed
                 studentDTOs.add(studentDTO);
             }
         }

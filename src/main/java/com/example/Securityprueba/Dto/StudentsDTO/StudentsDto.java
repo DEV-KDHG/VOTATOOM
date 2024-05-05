@@ -11,17 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class StudentsDto {
-    private String username;
-
-
-    private String password;
-
     private String name;
     private  Boolean stateVotation;
-
+    private  String group;
     private String lastName;
     private String grade;
-
     private Long identification;
     private String code;
 }

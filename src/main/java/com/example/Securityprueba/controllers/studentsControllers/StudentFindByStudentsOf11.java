@@ -2,7 +2,6 @@ package com.example.Securityprueba.controllers.studentsControllers;
 
 import com.example.Securityprueba.Dto.StudentsDTO.StudentsDto;
 import com.example.Securityprueba.entities.UserModels.Students;
-import com.example.Securityprueba.entities.UserModels.Users;
 import com.example.Securityprueba.repositories.UserRepositories.StudentsRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,21 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/students1")
 @CrossOrigin(origins ="http://localhost:5173/")
-public class StudentsFindByGrade {
 
-
+@RequestMapping(value = "/api/v1/students1")
+public class StudentFindByStudentsOf11 {
     private final StudentsRepository studentRepository;
-
-    public StudentsFindByGrade(StudentsRepository studentRepository) {
+    public StudentFindByStudentsOf11(StudentsRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
 
-    @GetMapping("/students/findByGrade/{grade}")
-    public ResponseEntity<?> findByGrade(@PathVariable Integer grade) {
-        List<Students> students = studentRepository.findAllByGrade(grade); // Get students by grade
+    @GetMapping("/students/findByGradeOf11")
+    public ResponseEntity<?> findByGradeOf11() {
+        List<Students> students = studentRepository.findAllByGrade(11); // Get students by grade
 
         if (students.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -44,9 +41,9 @@ public class StudentsFindByGrade {
             studentDto.setLastName(student.getLastName());
             studentDto.setGrade(String.valueOf(student.getGrade()));
             studentDto.setIdentification(student.getIdentification());
+            studentDto.setGroup(student.getGroup());
             // Add more assignments as needed
             studentDtos.add(studentDto);
         }
         return studentDtos;
     }}
-

@@ -22,11 +22,13 @@ boolean existsByIdentification(Long identification);
     Optional<Users> findByUsername(String username);
 Optional<Users> findById(Long id);
     void deleteById(Long id);
+    void deleteByIdentification(Long identification);
     List<Users> findAllByName(String name);
     Optional<Users> findUserByIdentification(Long identification); // Cambiado el nombre del método para usuarios
 
     Optional<Students> findStudentByIdentification(Long identification);
     Optional<Students>findByName(String name);
+
 List<Users>findAll();
   List<Students> findAllByGrade(Integer grade);
   List<Students>findStudentByStateVotationTrue();

@@ -16,6 +16,7 @@ public class StudentDtoStateVotation {
     private String lastName;
     private int grade;
     private String code;
+    private  String group;
 
     private Long identification;
 }

@@ -22,7 +22,6 @@ public class Votes {
     private  Long id ;
 
     private  Long studentsId;
-    private String stateVotation;
 
     @ManyToOne(targetEntity = Personero.class)
     @JoinColumn(name = "id_personero",nullable = false)

@@ -53,8 +53,8 @@ public class AuthenticationService {
         }
 
         Students student = new Students();
-
-        student.setUsername(studentRequest.getUsername());
+student.setGroup(studentRequest.getGroup());
+        student.setUsername(String.valueOf(studentRequest.getIdentification()));
         student.setName(studentRequest.getName());
         student.setRole(Role.STUDENT);
         student.setLastName(studentRequest.getLastName());
@@ -75,6 +75,10 @@ student.setCode(studentRequest.getCode());
         studentRepository.deleteById(studentId);
     }
 
+    public void deleteStudentByIdentification(Long Identification) {
+        studentRepository.deleteByIdentification(Identification);
+    }
+
     public AuthenticationResponse registerAdmin(Administrators request) {
         Administrators administrador = new Administrators();
         if (adminRepository.existsByUsername(request.getUsername())) {
@@ -86,6 +90,7 @@ student.setCode(studentRequest.getCode());
         administrador.setUsername(request.getUsername());
         administrador.setName(request.getName());
         administrador.setRole(Role.ADMIN);
+        administrador.setIdentification(request.getIdentification());
         administrador.setLastName(request.getLastName());
 administrador.setNameIns(administrador.getNameIns());
         administrador.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -140,7 +145,7 @@ administrador.setNameIns(administrador.getNameIns());
 
          if (user instanceof Administrators) {
             String token = jwtService.generateToken(user);
-            return new AuthenticationResponse("Administrador autenticado: " + token);
+            return new AuthenticationResponse( token);
 
 
         } else if (user instanceof Jury) {
