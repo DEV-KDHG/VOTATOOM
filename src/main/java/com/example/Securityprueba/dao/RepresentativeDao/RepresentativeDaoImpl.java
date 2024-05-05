@@ -55,7 +55,7 @@ public class RepresentativeDaoImpl implements RepresentativeDao{
     }
 
     @Override
-    public Optional<Representative> findByGrade(Integer grade) {
+    public List<Representative> findByGrade(Integer grade) {
         return representativeRepository.findByGrade(grade);
     }
 
@@ -65,7 +65,7 @@ public class RepresentativeDaoImpl implements RepresentativeDao{
     }
 
     @Override
-    public void deleteById(Long id) {
-        representativeRepository.deleteById(id);
+    public void deleteByIdentification(Long identification) {
+        representativeRepository.deleteByIdentification(identification);
     }
 }

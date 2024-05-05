@@ -24,4 +24,6 @@ private  String group;
 
     private Long identification;
     private String code;
+
+    private String group;
 }

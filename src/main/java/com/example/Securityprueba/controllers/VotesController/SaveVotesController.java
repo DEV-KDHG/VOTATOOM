@@ -1,5 +1,6 @@
 package com.example.Securityprueba.controllers.VotesController;
 
+
 import com.example.Securityprueba.Dto.VotesDto.VotesDto;
 import com.example.Securityprueba.entities.UserModels.Students;
 import com.example.Securityprueba.entities.UserModels.Users;
@@ -59,7 +60,6 @@ public class SaveVotesController {
                                 .personero(votesDto.getPersonero())
                                 .studentsId(studentId)
                                 .representative(votesDto.getRepresentative())
-                                .stateVotation(votesDto.getStateVotation())
                                 .build();
 
                         votesSerivice.save(votes);
@@ -77,4 +77,8 @@ public class SaveVotesController {
             }
         }
         return ResponseEntity.notFound().build();
+<<<<<<< HEAD
     }}
+=======
+    }}
+>>>>>>> 3677e170955fd06c683f7a7718fd8e729eed0dfd

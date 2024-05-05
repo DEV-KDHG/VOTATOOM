@@ -17,11 +17,12 @@ public interface RepresentativeRepository extends JpaRepository<Representative, 
 
     Optional<Representative> findByIdentification(Long identification);
 
-    Optional<Representative> findByGrade(Integer grade);
+    List<Representative> findByGrade(Integer grade);
 
     List<Representative> findAllByName(String name);
 
     List<Representative> findAllByGrade(Integer grade);
 
+    void deleteByIdentification(Long identification);
 
 }

@@ -41,7 +41,7 @@ public class RepresentativeServicesImpl implements RepresentativeServices {
 
     @Transactional
     @Override
-    public Optional<Representative> findByGrade(Integer grade) {
+    public List<Representative> findByGrade(Integer grade) {
         return representativeDao.findByGrade(grade);
     }
 
@@ -61,7 +61,7 @@ public class RepresentativeServicesImpl implements RepresentativeServices {
 
     @Transactional
     @Override
-    public void deleteById(Long id) {
-        representativeDao.deleteById(id);
+    public void deleteByIdentification(Long identification) {
+        representativeDao.deleteByIdentification(identification);
     }
 }

@@ -7,10 +7,10 @@ import com.example.Securityprueba.service.userServices.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@RequestMapping(value = "/api/v2")
+@CrossOrigin(origins ="http://localhost:5173/")
 @RestController
 public class RegisterControllers {
     @Autowired
