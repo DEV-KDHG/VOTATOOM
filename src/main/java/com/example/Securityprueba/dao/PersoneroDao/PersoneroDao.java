@@ -17,7 +17,7 @@ void save (Personero  personero);
 
     List<Personero>findAll();
 
-    void deleteById(long id);
+    void deleteByIdentification(long identification);
 
 
 }

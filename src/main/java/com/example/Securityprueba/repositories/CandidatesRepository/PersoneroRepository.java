@@ -15,4 +15,5 @@ public interface PersoneroRepository  extends JpaRepository<Personero,Long> {
     Optional<Personero>findByIdentification(Long identification);
 
     List<Personero>findAllByGrade(int grade);
+    void deleteByIdentification(Long identification);
 }

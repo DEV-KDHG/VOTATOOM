@@ -11,21 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
-
 @RestController
 @RequestMapping(value = "/api/v1/comptroller")
-public class ComptrollerDelete {
+public class ComptrollerDeleteByIdentification {
     @Autowired
     private ComptrollerServicesIMP comptrollerServicesIMP;
-@DeleteMapping("/DeleteById/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable Long id){
-        Optional<Comptroller> findById=comptrollerServicesIMP.findById(id);
-        if (!findById.isPresent()){
+@DeleteMapping("/DeleteById/{identification}")
+    public ResponseEntity<?> deleteById(@PathVariable Long identification){
+        Optional<Comptroller> findByIdentitification=comptrollerServicesIMP.findByIdentification(identification);
+        if (!findByIdentitification.isPresent()){
             return ResponseEntity.notFound().build();
 
         }
-       comptrollerServicesIMP.deleteById(id);
+       comptrollerServicesIMP.deleteByIdentification(identification);
 
         return ResponseEntity
                 .ok("se elimino el contralor");

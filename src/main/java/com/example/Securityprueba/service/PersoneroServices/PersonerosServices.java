@@ -17,6 +17,6 @@ public interface PersonerosServices {
 
     List<Personero>findAll();
 
-    void deleteById(long id);
+    void deleteByIdentificacion(long identification);
 
 }

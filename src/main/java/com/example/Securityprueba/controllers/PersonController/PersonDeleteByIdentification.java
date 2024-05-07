@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/api/v1/personero")
-public class PersonDeleteById {
+public class PersonDeleteByIdentification {
 
     @Autowired
     private PersonerosServicesImpl personerosServices;
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deletePersoneroById(@PathVariable Long id) {
+    @DeleteMapping("/delete/{identification}")
+    public ResponseEntity<?> deletePersoneroById(@PathVariable Long identification) {
         // Buscar el Personero por su identificación
-        Personero personero = personerosServices.findById(id).orElse(null);
+        Personero personero = personerosServices.findByIdentification(identification).orElse(null);
 
         if (personero == null) {
             // Si no se encuentra el Personero, retornar un error 404 Not Found
@@ -27,7 +27,7 @@ public class PersonDeleteById {
         }
 
         // Eliminar el Personero encontrado
-        personerosServices.deleteById(personero.getId());
+        personerosServices.deleteByIdentificacion(personero.getIdentification());
 
         // Retornar una respuesta 200 OK indicando que el Personero fue eliminado exitosamente
         return ResponseEntity.ok("Personero eliminado correctamente");

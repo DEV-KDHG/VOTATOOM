@@ -19,7 +19,7 @@ public interface ComptrollerRepository extends JpaRepository <Comptroller, Long>
 
     List<Comptroller> findAll();
 
-    void deleteById(Long id);
+    void deleteByIdentification(Long identification);
 
     void delete(Comptroller comptroller);
 
