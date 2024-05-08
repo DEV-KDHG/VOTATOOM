@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig  {
 
     private final JwtAuthenticationFilter jwtAuthenticattionFilter1;
-private final UserDetailsServiceImp userDetailsServiceImp;
+    private final UserDetailsServiceImp userDetailsServiceImp;
 
 
     public SecurityConfig(JwtAuthenticationFilter jwtAuthenticattionFilter1, UserDetailsServiceImp userDetailsServiceImp) {
@@ -43,22 +43,17 @@ private final UserDetailsServiceImp userDetailsServiceImp;
                                 "/api/v1/personero/findByFullName/**",
                                 "/api/v1/personero/findById/{id}","/api/v1/representative/findAllGrade",
                                 "/vote" ).hasAuthority("STUDENT")
-
                         .requestMatchers( "save/comptroller","save/comptroller","/count",
                                 "/api/v1/students1/findByName/{name}",
                                 "list/comptroller", "findBy/{id}", "/api/v1/students/register/students1","votes/**","/api/v1/students1/students/findByGrade/{grade}",
                                 "list/comptroller","/api/v1/representative/save",
-
-
-
                                 "/api/v1/representative/**","api/v1/personero/save",
                                 "/api/v1/personero/delete/**","/api/v1/students1/FindByIdentification/{identification}",
                                 "/api/v1/representative/**","api/v1/personero/save","/api/v1/students1/findAll",
-                                "/api/v1/personero/delete/**", "/api/v1/students1/FindByIdentification/{identification}").hasAuthority("ADMIN")
-
+                                "/api/v1/personero/delete/**", "/api/v1/students1/FindByIdentification/{identification}","/api/v1/students1//students/findByGradeOf11and10","api/v1/students1/students/findByGradeOf11").hasAuthority("ADMIN")
                         .requestMatchers("/api/v1/students1/findAll",
                                 "/api/v1/students1/FindByIdentification/{identification}"
-                              ).hasAuthority("JURY")
+                        ).hasAuthority("JURY")
 
                         .anyRequest().authenticated())
                 .userDetailsService(userDetailsServiceImp)
@@ -66,7 +61,7 @@ private final UserDetailsServiceImp userDetailsServiceImp;
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-                 .addFilterBefore(jwtAuthenticattionFilter1, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthenticattionFilter1, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
     @Bean

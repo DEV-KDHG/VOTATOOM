@@ -16,5 +16,6 @@ public class ComptrollerDTO {
     private Integer grade;
     private String estado;
     private String photo;
+    private String group;
 
 }

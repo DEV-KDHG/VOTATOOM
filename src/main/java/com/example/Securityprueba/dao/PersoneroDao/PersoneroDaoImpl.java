@@ -51,7 +51,7 @@ public class PersoneroDaoImpl implements  PersoneroDao{
     }
 
     @Override
-    public void deleteById(long id) {
-        personeroRepository.deleteById(id);
+    public void deleteByIdentification(long identification) {
+        personeroRepository.deleteByIdentification(identification);
     }
 }

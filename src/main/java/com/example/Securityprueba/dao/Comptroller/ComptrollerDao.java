@@ -1,6 +1,7 @@
 package com.example.Securityprueba.dao.Comptroller;
 
 import com.example.Securityprueba.entities.candidatesModels.Comptroller;
+import com.example.Securityprueba.entities.candidatesModels.Representative;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,11 +12,12 @@ public interface ComptrollerDao {
 
     Optional<Comptroller> findById(Long id);
 
+    Optional<Comptroller> findByIdentification(Long identification);
 
     List<Comptroller> findAll();
 
   void save (Comptroller comptroller);
-    void deleteById(Long id);
+    void deleteByIdentification(Long identification);
 
     void delete(Comptroller comptroller);
 

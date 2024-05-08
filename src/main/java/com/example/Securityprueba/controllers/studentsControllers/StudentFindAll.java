@@ -40,6 +40,8 @@ public class StudentFindAll {
                 StudentDtoStateVotation studentDTO = new StudentDtoStateVotation();
                 studentDTO.setName(student.getName());
                 studentDTO.setLastName(student.getLastName());
+                studentDTO.setGrade(student.getGrade());
+                studentDTO.setGrade((student.getGrade()));
                 studentDTO.setIdentification(student.getIdentification());
                 studentDTO.setCode(student.getCode());
                 studentDTO.setStateVotation(student.getStateVotation());

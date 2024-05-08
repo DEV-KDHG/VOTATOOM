@@ -51,14 +51,16 @@ personeroDao.save(personero);
         return personeroDao.findAll();
     }
 
+    @Transactional
+    @Override
+    public void deleteByIdentificacion(long identification) {
+        personeroDao.deleteByIdentification(identification);
+
+    }
+
     @Override
     public Optional<Personero> findById(Long id) {
         return personeroDao.findById(id);
     }
 
-    @Transactional()
-    @Override
-    public void deleteById(long id) {
-personeroDao.deleteById(id);
-    }
 }

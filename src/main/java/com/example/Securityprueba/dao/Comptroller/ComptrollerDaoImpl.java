@@ -35,6 +35,11 @@ public class ComptrollerDaoImpl implements ComptrollerDao{
     }
 
     @Override
+    public Optional<Comptroller> findByIdentification(Long identification) {
+        return  comptrollerRepository.findByIdentification(identification);
+    }
+
+    @Override
     public List<Comptroller> findAll() {
         return comptrollerRepository.findAll();
     }
@@ -45,8 +50,8 @@ public class ComptrollerDaoImpl implements ComptrollerDao{
     }
 
     @Override
-    public void deleteById(Long id) {
- comptrollerRepository.deleteById(id);
+    public void deleteByIdentification(Long identification) {
+    comptrollerRepository.deleteByIdentification(identification);
     }
 
     @Override

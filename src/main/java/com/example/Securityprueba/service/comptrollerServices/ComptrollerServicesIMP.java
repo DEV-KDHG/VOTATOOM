@@ -3,6 +3,7 @@ package com.example.Securityprueba.service.comptrollerServices;
 import com.example.Securityprueba.dao.Comptroller.ComptrollerDaoImpl;
 import com.example.Securityprueba.entities.candidatesModels.Comptroller;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +33,11 @@ public class ComptrollerServicesIMP implements ComptrollerService {
     }
 
     @Override
+    public Optional<Comptroller> findByIdentification(Long identification) {
+        return comptrollerDao.findByIdentification(identification);
+    }
+
+    @Override
     public List<Comptroller> findAll() {
         return comptrollerDao.findAll();
     }
@@ -41,9 +47,10 @@ public class ComptrollerServicesIMP implements ComptrollerService {
 comptrollerDao.save(comptroller);
     }
 
+    @Transactional
     @Override
-    public void deleteById(Long id) {
-comptrollerDao.deleteById(id);
+    public void deleteByIdentification(Long identification) {
+        comptrollerDao.deleteByIdentification(identification);
     }
 
     @Override
