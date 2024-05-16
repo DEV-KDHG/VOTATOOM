@@ -78,7 +78,6 @@ public class ComptrollerSave {
         newComptroller.setIdentification(student.getIdentification());
         newComptroller.setGrade(student.getGrade());
         newComptroller.setGroup(student.getGroup());
-        newComptroller.setPhoto(comptrollerDTO.getPhoto());
 
         comptrollerServicesIMP.save(newComptroller);
 

@@ -27,8 +27,7 @@ public class RepresentativeFindByName {
                     .name(representative.getName())
                     .lastName(representative.getLastName())
                     .identification(representative.getIdentification())
-                    .photo(representative.getPhoto())
-                    .grade(representative.getGrade())
+                     .grade(representative.getGrade())
                     .group(representative.getGroup())
                     .build())
             .collect(Collectors.toList());

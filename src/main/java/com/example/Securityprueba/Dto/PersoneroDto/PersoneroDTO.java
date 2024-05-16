@@ -13,11 +13,11 @@ import lombok.NoArgsConstructor;
 public class PersoneroDTO {
     private String name;
 
+    private byte[] data;
 
     private String lastName;
     private Long identification;
     private Integer grade;
-    private String photo;
 
     private String group;
 

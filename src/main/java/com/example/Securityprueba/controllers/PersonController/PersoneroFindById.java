@@ -28,8 +28,7 @@ public class PersoneroFindById {
         // Convertir el Personero encontrado a un DTO para la respuesta
         PersoneroDTO personeroDTO = PersoneroDTO.builder()
                 .name(personero.getName())
-                .photo(personero.getPhoto())
-                .identification(personero.getIdentification())
+                 .identification(personero.getIdentification())
                 .grade(personero.getGrade())
                 .group(personero.getGroup())
                 .build();

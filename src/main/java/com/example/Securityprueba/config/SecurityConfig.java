@@ -38,7 +38,7 @@ public class SecurityConfig  {
                         .requestMatchers(String.valueOf(PathRequest.toStaticResources()
                                 .atCommonLocations())).permitAll()
                         .requestMatchers( "/api/v1/students/login/students", "/api/v2/login/admin",
-                                "/register/jury","/api/v2/register/admin","authenticate/student").permitAll()
+                                "/register/jury","/api/v2/register/admin","authenticate/student" ).permitAll()
                         .requestMatchers("/api/v1/personero/findAllByGrade",
                                 "/api/v1/personero/findByFullName/**",
                                 "/api/v1/personero/findById/{id}","/api/v1/representative/findAllGrade",
@@ -50,7 +50,11 @@ public class SecurityConfig  {
                                 "/api/v1/representative/**","api/v1/personero/save",
                                 "/api/v1/personero/delete/**","/api/v1/students1/FindByIdentification/{identification}",
                                 "/api/v1/representative/**","api/v1/personero/save","/api/v1/students1/findAll",
-                                "/api/v1/personero/delete/**", "/api/v1/students1/FindByIdentification/{identification}","/api/v1/students1//students/findByGradeOf11and10","api/v1/students1/students/findByGradeOf11").hasAuthority("ADMIN")
+                                "/api/v1/personero/delete/**", "/api/v1/students1/FindByIdentification/{identification}","/api/v1/students1//students/findByGradeOf11and10","api/v1/students1/students/findByGradeOf11"
+                                ,"/api/v1/personero/upload/personero/{identification}"
+
+                        ,"api/v1/comptroller/upload/comptroller/{identification}","api/v1/representative/upload/representative/{identification}"
+                        ).hasAuthority("ADMIN")
                         .requestMatchers("/api/v1/students1/findAll",
                                 "/api/v1/students1/FindByIdentification/{identification}"
                         ).hasAuthority("JURY")

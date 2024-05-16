@@ -36,8 +36,7 @@ public class RepresentativeFindByGrade {
                     .lastName(representative.getLastName())
                     .identification(representative.getIdentification())
                     .grade(representative.getGrade())
-                    .photo(representative.getPhoto())
-                    .group(representative.getGroup())
+                     .group(representative.getGroup())
                     .build();
             representativeDTOs.add(representativeDTO);
         }

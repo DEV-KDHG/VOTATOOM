@@ -15,7 +15,7 @@ public class ComptrollerDTO {
     private Long identification;
     private Integer grade;
     private String estado;
-    private String photo;
+    private byte[] data;
     private String group;
 
 }
