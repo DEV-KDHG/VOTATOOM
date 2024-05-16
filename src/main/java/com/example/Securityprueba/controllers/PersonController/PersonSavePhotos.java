@@ -13,6 +13,7 @@ import java.io.IOException;
 
 import java.util.Optional;
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/personero")
 public class PersonSavePhotos {
 
