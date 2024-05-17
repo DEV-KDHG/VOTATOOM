@@ -1,5 +1,6 @@
 package com.example.Securityprueba.repositories.UserRepositories;
 
+import com.example.Securityprueba.entities.UserModels.Jury;
 import com.example.Securityprueba.entities.UserModels.Students;
 import com.example.Securityprueba.entities.UserModels.Users;
 import com.example.Securityprueba.entities.candidatesModels.Personero;
@@ -28,6 +29,7 @@ Optional<Users> findById(Long id);
 
     Optional<Students> findStudentByIdentification(Long identification);
     Optional<Students>findByName(String name);
+    Optional<Jury> findByIdentification(Long identification);
 
 List<Users>findAll();
   List<Students> findAllByGrade(Integer grade);
