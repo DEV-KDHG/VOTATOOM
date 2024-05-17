@@ -28,8 +28,7 @@ public class ComptrollerFindByName {
                         .identification(comptroller.getIdentification())
 
                         .grade(comptroller.getGrade())
-                        .photo(comptroller.getPhoto())
-                        .build();
+                         .build();
 
 
             }

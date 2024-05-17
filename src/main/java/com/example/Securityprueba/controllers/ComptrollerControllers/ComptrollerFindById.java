@@ -25,8 +25,7 @@ public ResponseEntity<?>findById(@PathVariable Long id) {
                     .lastName(comptroller.getLastName())
                     .identification(comptroller.getIdentification())
                    .grade(comptroller.getGrade())
-                   .photo(comptroller.getPhoto())
-                    .build();
+                     .build();
 
 
         }

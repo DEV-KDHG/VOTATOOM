@@ -80,7 +80,6 @@ public class RepresentativeSave {
             representative.setIdentification(representativeDTO.getIdentification());
             representative.setGrade(students.getGrade());
             representative.setGroup(students.getGroup());
-            representative.setPhoto(representativeDTO.getPhoto());
 
             // Guardar el nuevo representante en la base de datos
             representativeServices.save(representative);

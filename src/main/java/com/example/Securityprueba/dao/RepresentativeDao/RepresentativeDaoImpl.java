@@ -42,8 +42,7 @@ public class RepresentativeDaoImpl implements RepresentativeDao{
                 .lastName(representative.getLastName())
                 .identification(representative.getIdentification())
                 .grade(representative.getGrade())
-                .photo(representative.getPhoto())
-                .group(representative.getGroup())
+                 .group(representative.getGroup())
                 .build();
     }
 

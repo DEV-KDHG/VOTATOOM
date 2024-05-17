@@ -32,8 +32,7 @@ public class ComptrollerFindByIdentification {
                 .lastName(comptroller.getLastName())
                 .identification(comptroller.getIdentification())
                 .grade(comptroller.getGrade())
-                .photo(comptroller.getPhoto())
-                .group(comptroller.getGroup())
+                 .group(comptroller.getGroup())
                 .build();
         return ResponseEntity.ok(comptrollerDTO);
     }

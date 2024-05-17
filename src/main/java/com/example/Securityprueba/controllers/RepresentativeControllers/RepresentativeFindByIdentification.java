@@ -32,8 +32,7 @@ public class RepresentativeFindByIdentification {
                 .lastName(representative.getLastName())
                 .identification(representative.getIdentification())
                 .grade(representative.getGrade())
-                .photo(representative.getPhoto())
-                .group(representative.getGroup())
+                 .group(representative.getGroup())
                 .build();
 
         return ResponseEntity.ok(representativeDTO);

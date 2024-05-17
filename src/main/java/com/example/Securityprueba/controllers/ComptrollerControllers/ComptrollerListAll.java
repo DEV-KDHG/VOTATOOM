@@ -25,6 +25,7 @@ public class ComptrollerListAll {
                         .name(comptroller.getName())
                         .lastName(comptroller.getLastName())
                         .grade(comptroller.getGrade())
+                        .data(comptroller.getData())
 
                         .identification(comptroller.getIdentification())
                         .build()

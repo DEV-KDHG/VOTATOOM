@@ -77,7 +77,6 @@ public class SavePerson {
             personero.setIdentification(personeroDTO.getIdentification());
             personero.setGrade(students.getGrade());
             personero.setGroup(students.getGroup());
-            personero.setPhoto(personeroDTO.getPhoto());
 
             // Guardar el nuevo Personero
             try {

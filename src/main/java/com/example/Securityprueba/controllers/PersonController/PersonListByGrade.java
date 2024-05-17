@@ -22,7 +22,7 @@ public class PersonListByGrade {
 
                 .map(personero -> PersoneroDTO.builder()
                         .name(personero.getName())
-                        .photo(personero.getPhoto())
+
                         .identification(personero.getIdentification())
                         .grade(personero.getGrade())
                         .group(personero.getGroup())

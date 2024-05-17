@@ -30,8 +30,7 @@ public class PersoneroByIdentification {
                     .lastName(personero.getLastName())
                     .identification(personero.getIdentification())
                     .grade(personero.getGrade())
-                    .photo(personero.getPhoto())
-                    .group(personero.getGroup())
+                     .group(personero.getGroup())
                     .build();
 
         return ResponseEntity.ok(personeroDTO);

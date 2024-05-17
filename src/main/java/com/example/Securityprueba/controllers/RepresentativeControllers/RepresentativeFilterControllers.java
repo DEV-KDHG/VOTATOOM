@@ -66,10 +66,10 @@ public class RepresentativeFilterControllers {
                                 .stream()
                                 .map(representative -> RepresentativeDTO.builder()
                                         .name(representative.getName())
-                                        .photo(representative.getPhoto())
-                                        .identification(representative.getIdentification())
+                                         .identification(representative.getIdentification())
                                         .grade(representative.getGrade())
                                         .group(representative.getGroup())
+                                        .data(representative.getData())
                                         .build())
                                 .collect(Collectors.toList());
 

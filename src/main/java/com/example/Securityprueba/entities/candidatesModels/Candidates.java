@@ -3,12 +3,14 @@ package com.example.Securityprueba.entities.candidatesModels;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+
 
 @MappedSuperclass
 @Data
 @NoArgsConstructor(force=true)
 @AllArgsConstructor
-public class Candidates {
+public class Candidates implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 private  Long id;
@@ -19,12 +21,25 @@ private  Long id;
     @Column(unique = true)
     private Long identification;
     private Integer grade;
-    private String photo;
-    @Column(name = "`group`")
+    private String namePhoto;
+
+    @Lob
+    @Column(name = "data", columnDefinition = "LONGBLOB")
+
+    private byte[] data;
+@Column(name = "`group`")
     private String group;
 
     public Long getId() {
         return id;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
     }
 
     public void setId(Long id) {
@@ -63,16 +78,17 @@ private  Long id;
         this.grade = grade;
     }
 
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
 
     public String getGroup() {
         return group;
+    }
+
+    public String getNamePhoto() {
+        return namePhoto;
+    }
+
+    public void setNamePhoto(String namePhoto) {
+        this.namePhoto = namePhoto;
     }
 
     public void setGroup(String group) {

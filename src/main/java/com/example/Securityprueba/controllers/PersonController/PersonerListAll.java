@@ -22,12 +22,11 @@ public class PersonerListAll {
         List<PersoneroDTO>personeroDTOS=personerosServices.findAll().stream().map(personero ->
                 PersoneroDTO.builder()
                         .name(personero.getName())
-                        .photo(personero.getPhoto())
-                        .identification(personero.getIdentification())
+                         .identification(personero.getIdentification())
                         .grade(personero.getGrade())
                         .group(personero.getGroup())
-
-                        .build()
+                        .data(personero.getData())
+                                                .build()
                 ).toList();
         return  ResponseEntity.ok(personeroDTOS);
     }
