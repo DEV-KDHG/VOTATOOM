@@ -28,6 +28,7 @@ Optional<Users> findById(Long id);
     Optional<Users> findUserByIdentification(Long identification); // Cambiado el nombre del método para usuarios
 
     Optional<Students> findStudentByIdentification(Long identification);
+    Optional<Jury> findJuryByIdentification(Long identification);
     Optional<Students>findByName(String name);
     Optional<Jury> findByIdentification(Long identification);
 

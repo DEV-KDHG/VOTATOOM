@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URISyntaxException;
 import java.security.Principal;
 import java.util.Optional;
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 
 @RequestMapping(value = "/api/v1/comptroller")
