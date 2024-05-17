@@ -35,7 +35,7 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
 
-    public AuthenticationService(StudentsRepository studentRepository, AdministratorRepository adminRepository, PasswordEncoder passwordEncoder, JwtService jwtService, @Qualifier("studentsRepository") UserRepository userRepository,  AuthenticationManager authenticationManager) {
+    public AuthenticationService(StudentsRepository studentRepository, AdministratorRepository adminRepository, PasswordEncoder passwordEncoder, JwtService jwtService, @Qualifier("studentsRepository") UserRepository userRepository, AuthenticationManager authenticationManager) {
         this.studentRepository = studentRepository;
         this.adminRepository = adminRepository;
         this.passwordEncoder = passwordEncoder;
@@ -44,6 +44,7 @@ public class AuthenticationService {
 
         this.authenticationManager = authenticationManager;
     }
+
     public AuthenticationResponse registerStudent(Students studentRequest) {
         if (studentRepository.existsByUsername(studentRequest.getUsername())) {
             throw new IllegalArgumentException("El nombre de usuario ya está en uso.");
@@ -53,7 +54,7 @@ public class AuthenticationService {
         }
 
         Students student = new Students();
-student.setGroup(studentRequest.getGroup());
+        student.setGroup(studentRequest.getGroup());
         student.setUsername(String.valueOf(studentRequest.getIdentification()));
         student.setName(studentRequest.getName());
         student.setRole(Role.STUDENT);
@@ -62,7 +63,7 @@ student.setGroup(studentRequest.getGroup());
 
         student.setGrade(studentRequest.getGrade());
         student.setIdentification(studentRequest.getIdentification());
-student.setCode(studentRequest.getCode());
+        student.setCode(studentRequest.getCode());
         Students savedStudent = studentRepository.save(student);
 
 
@@ -78,6 +79,9 @@ student.setCode(studentRequest.getCode());
     public void deleteStudentByIdentification(Long Identification) {
         studentRepository.deleteByIdentification(Identification);
     }
+    public void deleteJuryByIdentification(Long Identification) {
+        juryRepository.deleteByIdentification(Identification);
+    }
 
     public AuthenticationResponse registerAdmin(Administrators request) {
         Administrators administrador = new Administrators();
@@ -92,7 +96,7 @@ student.setCode(studentRequest.getCode());
         administrador.setRole(Role.ADMIN);
         administrador.setIdentification(request.getIdentification());
         administrador.setLastName(request.getLastName());
-administrador.setNameIns(administrador.getNameIns());
+        administrador.setNameIns(administrador.getNameIns());
         administrador.setPassword(passwordEncoder.encode(request.getPassword()));
 
         Administrators savedAdmin = adminRepository.save(administrador);
@@ -138,50 +142,40 @@ administrador.setNameIns(administrador.getNameIns());
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
                         request.getPassword()
+
                 )
         );
 
         Users user = userRepository.findByUsername(request.getUsername()).orElseThrow();
 
-         if (user instanceof Administrators) {
+        if (user instanceof Administrators) {
             String token = jwtService.generateToken(user);
-            return new AuthenticationResponse( token);
+            return new AuthenticationResponse(token);
 
 
         } else if (user instanceof Jury) {
-        String token = jwtService.generateToken(user);
-        return new AuthenticationResponse("Jury autenticado: " + token);}
-
-
-        else {
+            String token = jwtService.generateToken(user);
+            return new AuthenticationResponse(token);
+        } else {
             throw new IllegalArgumentException("Tipo de usuario no compatible");
         }
     }
 
+
     public AuthenticationResponse authenticateStudent(LoginStudentDto request) {
-        // Buscar al estudiante por nombre de usuario
         Students student = userRepository.findStudentByUsername(request.getUsername())
                 .orElseThrow(() -> new BadCredentialsException("Credenciales inválidas: Nombre de usuario no encontrado"));
-
-        // Verificar la contraseña
         if (!passwordEncoder.matches(request.getPassword(), student.getPassword())) {
             throw new BadCredentialsException("Credenciales inválidas: Contraseña incorrecta");
         }
-
-        // Verificar el código único
         if (!request.getCode().equals(student.getCode())) {
             throw new BadCredentialsException("Credenciales inválidas: Código único incorrecto");
         }
-
-        // Generar un token JWT si las credenciales son válidas
         String token = jwtService.generateToken(student);
-
-        // Devolver una instancia de AuthenticationResponse con el token generado
         return new AuthenticationResponse(token);
     }
+
 }
-
-
 
 
 
