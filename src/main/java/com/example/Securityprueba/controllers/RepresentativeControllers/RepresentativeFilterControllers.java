@@ -65,6 +65,7 @@ public class RepresentativeFilterControllers {
                         List<RepresentativeDTO> representativeDTOs = representativeRepository.findAllByGrade(grade)
                                 .stream()
                                 .map(representative -> RepresentativeDTO.builder()
+                                        .id(representative.getId())
                                         .name(representative.getName())
                                          .identification(representative.getIdentification())
                                         .grade(representative.getGrade())

@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RepresentativeDTO {
 
+
+    private  Long id;
     private String name;
     private String lastName;
     private Long identification;
