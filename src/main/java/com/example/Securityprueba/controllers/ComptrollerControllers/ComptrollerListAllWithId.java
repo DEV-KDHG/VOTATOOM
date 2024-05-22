@@ -28,7 +28,7 @@ public class ComptrollerListAllWithId {
                         .lastName(comptroller.getLastName())
                         .grade(comptroller.getGrade())
                         .data(comptroller.getData())
-
+                        .group(comptroller.getGroup())
                         .identification(comptroller.getIdentification())
                         .build()
         ).toList();
