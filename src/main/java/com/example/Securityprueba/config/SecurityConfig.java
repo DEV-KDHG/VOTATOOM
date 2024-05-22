@@ -46,7 +46,9 @@ public class SecurityConfig  {
                         .requestMatchers("/api/v1/personero/findAllByGrade",
 
                                 "/api/v1/personero/findByFullName/**",
-                                "/api/v1/personero/findById/{id}","/api/v1/representative/findAllGrade",
+                                "/api/v1/personero/findById/{id}","/api/v1/representative/findAllGrade"
+                                ,"/api/v1/personero/findAllWithId",
+                                "/api/v1/comptroller/list/comptrollerWithId",
                                 "/vote" ).hasAuthority("STUDENT")
                         //ADMIN//
                         .requestMatchers( "save/comptroller","save/comptroller"
