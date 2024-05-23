@@ -19,7 +19,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.Principal;
 import java.util.Optional;
-
+@CrossOrigin(origins = "*")
 @RestController
 
 public class SaveVotesController {

@@ -30,6 +30,7 @@ Optional<Users> findById(Long id);
     Optional<Students> findStudentByIdentification(Long identification);
     Optional<Jury> findJuryByIdentification(Long identification);
     Optional<Students>findByName(String name);
+    Optional<Jury> findByIdentification(Long identification);
 
 List<Users>findAll();
   List<Students> findAllByGrade(Integer grade);

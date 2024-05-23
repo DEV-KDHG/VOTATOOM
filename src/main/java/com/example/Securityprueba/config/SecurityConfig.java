@@ -46,7 +46,9 @@ public class SecurityConfig  {
                         .requestMatchers("/api/v1/personero/findAllByGrade",
 
                                 "/api/v1/personero/findByFullName/**",
-                                "/api/v1/personero/findById/{id}","/api/v1/representative/findAllGrade",
+                                "/api/v1/personero/findById/{id}","/api/v1/representative/findAllGrade"
+                                ,"/api/v1/personero/findAllWithId",
+                                "/api/v1/comptroller/list/comptrollerWithId",
                                 "/vote" ).hasAuthority("STUDENT")
                         //ADMIN//
                         .requestMatchers( "save/comptroller","save/comptroller"
@@ -77,6 +79,9 @@ public class SecurityConfig  {
                                 "/api/v1/representative/**","api/v1/personero/save","/api/v1/students1/findAll",
                                 "/api/v1/personero/delete/**", "/api/v1/students1/FindByIdentification/{identification}","/api/v1/students1//students/findByGradeOf11and10","api/v1/students1/students/findByGradeOf11"
                                 ,"/api/v1/personero/upload/personero/{identification}"
+
+                                ,"/api/v2/delete/jury/{identification}"
+                                ,"/api/v2/findAll/jury"
 
                         ,"api/v1/comptroller/upload/comptroller/{identification}","api/v1/representative/upload/representative/{identification}"
                         ).hasAuthority("ADMIN")
