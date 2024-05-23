@@ -24,6 +24,7 @@ public class PersonerListAllWitId {
                         PersoneroDtoList.builder()
                         .id(personero.getId())
                         .name(personero.getName())
+                         .lastName(personero.getLastName())
                          .identification(personero.getIdentification())
                         .grade(personero.getGrade())
                         .group(personero.getGroup())

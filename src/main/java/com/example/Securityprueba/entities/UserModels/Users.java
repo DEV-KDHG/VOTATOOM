@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Data
 @Entity
 @DiscriminatorColumn(name = "user_type")
-@Builder
 @Inheritance(strategy = InheritanceType.JOINED)
 public  abstract class Users implements UserDetails {
 @Id

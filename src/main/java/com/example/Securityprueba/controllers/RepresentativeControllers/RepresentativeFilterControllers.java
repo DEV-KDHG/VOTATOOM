@@ -67,6 +67,7 @@ public class RepresentativeFilterControllers {
                                 .map(representative -> RepresentativeDTO.builder()
                                         .id(representative.getId())
                                         .name(representative.getName())
+                                        .lastName(representative.getLastName())
                                          .identification(representative.getIdentification())
                                         .grade(representative.getGrade())
                                         .group(representative.getGroup())
