@@ -26,7 +26,7 @@ public class Votes {
     @ManyToOne(targetEntity = Personero.class)
     @JoinColumn(name = "id_personero",nullable = false)
     @JsonIgnore
-    private Personero personero;
+        private Personero personero;
     @ManyToOne(targetEntity = Representative.class)
     @JoinColumn(name = "id_representate",nullable = false)
     private Representative representative;

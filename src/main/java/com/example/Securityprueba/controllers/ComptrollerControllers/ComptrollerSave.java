@@ -36,7 +36,7 @@ public class ComptrollerSave {
     @Autowired
     private ComptrollerRepository comptrollerRepository;
 
-    @PostMapping("/save/comptroller")
+            @PostMapping("/save/comptroller")
     public ResponseEntity<?> save(@RequestBody ComptrollerDTO comptrollerDTO, Principal principal) throws URISyntaxException {
         String name = principal.getName();
 
