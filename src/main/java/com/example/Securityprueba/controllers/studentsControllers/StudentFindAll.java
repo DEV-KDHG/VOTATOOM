@@ -19,7 +19,7 @@ public class StudentFindAll {
     @Autowired
     private StudentsRepository studentsRepository;
 
-    @GetMapping("/students1/findAll")
+    @GetMapping("/findAll")
     public ResponseEntity<?> responseEntity() {
         List<Users> users = studentsRepository.findAll(); // Obtain users
 

@@ -38,7 +38,7 @@ public class SecurityConfig  {
                         .requestMatchers(String.valueOf(PathRequest.toStaticResources()
                                 .atCommonLocations())).permitAll()
 
-                        .requestMatchers( "/api/v3/login/students" ,"/api/v2/login/admin"
+                        .requestMatchers( "/api/v2/login/students" ,"/api/v2/login/admin"
                                 ,"/api/v2/register/admin","authenticate/student" ,"api/v2/login/jury").permitAll()
 
                         //STUDENTS//
@@ -51,41 +51,30 @@ public class SecurityConfig  {
                                 "/api/v1/comptroller/list/comptrollerWithId",
                                 "/vote" ).hasAuthority("STUDENT")
                         //ADMIN//
-                        .requestMatchers( "save/comptroller","save/comptroller"
+                        .requestMatchers( "save/comptroller"
                                 ,"/count",
                                 "/api/v1/students1/findByName/{name}",
-
-                                "/api/v1/jury/deleteByIdentification/",
-                                "list/comptroller",
-                                "findBy/{id}",
-                                "/api/v1/students/register/students1",
-                                "votes/**",
+                                "api/v2/register/jury",
+                              "/api/v1/students1/students1/findAll",
+                                "list/comptroller", "findBy/{id}",
+                                "/api/v1/students/register/students1","votes/**",
                                 "/api/v1/students1/students/findByGrade/{grade}",
-                                "list/comptroller",
-                                "/api/v1/representative/save",
-                                "/api/v1/representative/**",
-                                "api/v1/personero/save",
-                                "/api/v1/personero/delete/**",
-                                "/api/v1/students1/FindByIdentification/{identification}",
-                                "api/v1/personero/save","/api/v1/students1/students1/findAll",
-                                "/api/v1/personero/delete/**", "/api/v1/students1/FindByIdentification/{identification}","/api/v1/students1//students/findByGradeOf11and10","api/v1/students1/students/findByGradeOf11", "api/v2/register/jury").hasAuthority("ADMIN")
-
-                        .requestMatchers("/api/v1/students1/students1/findAll",
-
-                                "list/comptroller", "findBy/{id}", "/api/v1/students/register/students1","votes/**","/api/v1/students1/students/findByGrade/{grade}",
                                 "/api/v1/representative/save",
                                 "/api/v1/representative/**","api/v1/personero/save",
-                                "/api/v1/personero/delete/**","/api/v1/students1/FindByIdentification/{identification}",
-                                "/api/v1/representative/**","api/v1/personero/save","/api/v1/students1/findAll",
-                                "/api/v1/personero/delete/**", "/api/v1/students1/FindByIdentification/{identification}","/api/v1/students1//students/findByGradeOf11and10","api/v1/students1/students/findByGradeOf11"
+                                "/api/v1/personero/delete/**"
+                                ,"/api/v1/students1/FindByIdentification/{identification}",
+                                "/api/v1/representative/**"
+                                ,"api/v1/personero/save","/api/v1/students1/findAll",
+                                "/api/v1/personero/delete/**"
+                                ,"/api/v1/students1//students/findByGradeOf11and10"
+                                ,"api/v1/students1/students/findByGradeOf11"
                                 ,"/api/v1/personero/upload/personero/{identification}"
-
                                 ,"/api/v2/delete/jury/{identification}"
                                 ,"/api/v2/findAll/jury"
-
-                        ,"api/v1/comptroller/upload/comptroller/{identification}","api/v1/representative/upload/representative/{identification}"
+                        ,"api/v1/comptroller/upload/comptroller/{identification}"
+                                ,"api/v1/representative/upload/representative/{identification}"
                         ).hasAuthority("ADMIN")
-                        .requestMatchers("/api/v1/students1/students1/findAll",
+                        .requestMatchers("/api/v1/students1/findAll",
 
                                 "/api/v1/students1/FindByIdentification/{identification}"
                         ).hasAuthority("JURY")

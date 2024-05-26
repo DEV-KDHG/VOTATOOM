@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.naming.AuthenticationException;
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
-@RequestMapping(value = "/api/v3")
+@RequestMapping(value = "/api/v2")
 public class StudentsAuthentication {
     @Autowired
     private  AuthenticationService authenticationService;
