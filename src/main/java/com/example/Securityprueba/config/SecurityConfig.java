@@ -52,7 +52,7 @@ public class SecurityConfig  {
                                 "/vote" ).hasAuthority("STUDENT")
                         //ADMIN//
                         .requestMatchers( "save/comptroller"
-                                ,"/count",
+                                ,"/count", "/votes/personero", "/votes/comptrollers",
                                 "/api/v1/students1/findByName/{name}",
                                 "api/v2/register/jury",
                               "/api/v1/students1/students1/findAll",
