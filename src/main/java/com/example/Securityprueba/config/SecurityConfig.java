@@ -69,11 +69,12 @@ public class SecurityConfig  {
                                 ,"/api/v1/students1//students/findByGradeOf11and10"
                                 ,"api/v1/students1/students/findByGradeOf11"
                                 ,"/api/v1/personero/upload/personero/{identification}"
-                                ,"/api/v2/delete/jury/{identification}"
+                                ,"/deleteByIdentification/{identification}"
                                 ,"/api/v2/findAll/jury"
                         ,"api/v1/comptroller/upload/comptroller/{identification}"
                                 ,"api/v1/representative/upload/representative/{identification}"
                         ).hasAuthority("ADMIN")
+                        //JURY
                         .requestMatchers("/api/v1/students1/findAll",
 
                                 "/api/v1/students1/FindByIdentification/{identification}"
