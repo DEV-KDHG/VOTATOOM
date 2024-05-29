@@ -21,7 +21,7 @@ public class CountVotesByRepresentativesOrderByGradoDescController {
     @Autowired
     private VotesSeriviceImpl  votesSerivice;
 
-    @GetMapping("/representatives-by-grado-desc")
+    @GetMapping("/representatives")
     public ResponseEntity<List<Map<String, Object>>> countVotesByRepresentativesOrderByGradoDesc() {
         List<Object[]> results = votesSerivice.countVotesByRepresentativesOrderByGradoDesc();
         List<Map<String, Object>> mappedResults = mapResultsToResponse(results);

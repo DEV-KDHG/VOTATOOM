@@ -38,7 +38,7 @@ public class SecurityConfig  {
                         .requestMatchers(String.valueOf(PathRequest.toStaticResources()
                                 .atCommonLocations())).permitAll()
 
-                        .requestMatchers( "/api/v2/login/students" ,"/api/v2/login/admin"
+                        .requestMatchers( "/api/v2/login/students" ,"/api/v2/login/admin",  "/votes/representatives"
                                 ,"/api/v2/register/admin","authenticate/student" ,"api/v2/login/jury").permitAll()
 
                         //STUDENTS//
@@ -71,6 +71,7 @@ public class SecurityConfig  {
                                 ,"/api/v1/personero/upload/personero/{identification}"
                                 ,"/deleteByIdentification/{identification}"
                                 ,"/api/v2/findAll/jury"
+                                , "/votes/representatives"
                         ,"api/v1/comptroller/upload/comptroller/{identification}"
                                 ,"api/v1/representative/upload/representative/{identification}"
                         ).hasAuthority("ADMIN")
